@@ -1,8 +1,10 @@
 package controller;
 
+import gameLogic.User;
 import gui.MainFrame;
 import java.util.Calendar;
 import java.util.Locale;
+import timeSimulation.TimeSimulator;
 
 /**
  *
@@ -11,14 +13,16 @@ import java.util.Locale;
 public class Controller {
   private MainFrame gui;
   private TimeSimulator timeSimulator;
+  private User user;
 
   public Controller(MainFrame frame) {
+    user = User.getInstance();
     this.gui = frame;
     timeSimulator = new TimeSimulator(this);
     timeSimulator.startTimeSimulation();
   }
 
-  public void setTime(Calendar calendar) {
+  public void setDate(Calendar calendar) {
     String month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
     String year = String.valueOf(calendar.get(Calendar.YEAR));
     String date = month + ", " + year;
@@ -28,6 +32,11 @@ public class Controller {
   public void end() {
     gui.dispose();
     System.exit(0);
+  }
+
+  public void makeProgress() {
+    user.payDay();
+    gui.setMoney(user.getMoney());
   }
 
 }

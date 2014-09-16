@@ -4,6 +4,7 @@ import controller.Controller;
 import gui.MainFrame;
 
 /**
+ * Main class
  *
  * @author manutero
  */

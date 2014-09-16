@@ -22,6 +22,8 @@ public class MainFrame extends javax.swing.JFrame {
   private void initComponents() {
 
     jToolBar1 = new javax.swing.JToolBar();
+    moneyLabel = new javax.swing.JLabel();
+    dolarLabel = new javax.swing.JLabel();
     dateLabel = new javax.swing.JLabel();
     mainTabbedPane = new javax.swing.JTabbedPane();
     jPanel1 = new javax.swing.JPanel();
@@ -36,6 +38,12 @@ public class MainFrame extends javax.swing.JFrame {
     getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
     jToolBar1.setRollover(true);
+
+    moneyLabel.setText("jLabel1");
+    jToolBar1.add(moneyLabel);
+
+    dolarLabel.setText("$   ");
+    jToolBar1.add(dolarLabel);
 
     dateLabel.setText("jLabel1");
     jToolBar1.add(dateLabel);
@@ -114,9 +122,6 @@ public class MainFrame extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-  public void launch() {
-    setVisible(true);
-  }
 
   /**
    * @param args the command line arguments
@@ -155,6 +160,7 @@ public class MainFrame extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JLabel dateLabel;
+  private javax.swing.JLabel dolarLabel;
   private javax.swing.JPanel jPanel1;
   private javax.swing.JPanel jPanel2;
   private javax.swing.JPanel jPanel3;
@@ -163,10 +169,23 @@ public class MainFrame extends javax.swing.JFrame {
   private javax.swing.JSplitPane jSplitPane1;
   private javax.swing.JToolBar jToolBar1;
   private javax.swing.JTabbedPane mainTabbedPane;
+  private javax.swing.JLabel moneyLabel;
   // End of variables declaration//GEN-END:variables
 
+  //--------------------------------------------------
+  //
   public void setDate(String date) {
     dateLabel.setText(date);
+  }
+
+  public void launch() {
+    dateLabel.setText(gameLogic.GameConstans.STARTING_DATE);
+    moneyLabel.setText(String.valueOf(gameLogic.GameConstans.STARTING_MONEY));
+    setVisible(true);
+  }
+
+  public void setMoney(int money) {
+    moneyLabel.setText(String.valueOf(money));
   }
 
 }
