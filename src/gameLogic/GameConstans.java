@@ -12,7 +12,7 @@ public final class GameConstans {
   public static final int ENDING_MONTH = 11; // december
 
   public static final String STARTING_DATE = "enero, " + STARTING_YEAR;
-  public static final int STARTING_MONEY = 500;
+  public static final int STARTING_MONEY = 5000000;
 
   private GameConstans() {
     throw new AssertionError();

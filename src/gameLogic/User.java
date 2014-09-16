@@ -9,7 +9,8 @@ public class User {
 
   private int money;
   private int totalExpense;
-  private int basicExpense;
+  private final int basicExpense;
+  private Director director;
 
   public static User getInstance() {
     if (instance == null) {
@@ -26,13 +27,28 @@ public class User {
     return money;
   }
 
+  public boolean hasHireDirector() {
+    return director != null;
+  }
+
+  public void hireDirector(Director director) {
+    this.director = director;
+    totalExpense += director.getSalary();
+  }
+
+  public void fireDirector() {
+    this.director = null;
+    totalExpense -= director.getSalary();
+  }
+
   /* Singleton pattern */
   private static User instance = null;
 
   private User() {
-    this.money = GameConstans.STARTING_MONEY;
-    this.basicExpense = 1;
-    this.totalExpense = basicExpense;
+    money = GameConstans.STARTING_MONEY;
+    basicExpense = 1;
+    totalExpense = basicExpense;
+    director = null;
   }
 
 }

@@ -70,7 +70,7 @@ public class TimeSimulator {
     @Override
     public void run() {
       date.add(Calendar.MONTH, 1);
-      controller.setDate(date);
+      controller.nextMonth(date);
       if (mustFinishTheGame()) {
         controller.end();
       } else {

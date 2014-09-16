@@ -10,10 +10,13 @@ import gui.MainFrame;
  */
 public class MovieMaker {
 
+  public static String DIRECTORS_FILE_PATH
+          = MovieMaker.class.getClassLoader().getResource("resources/directors.txt").getPath();
+
   public static void main(String[] args) {
     MainFrame gui = new MainFrame();
     Controller c = new Controller(gui);
-    gui.launch();
+    c.run();
   }
-    
+
 }

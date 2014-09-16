@@ -1,5 +1,8 @@
 package gui;
 
+import controller.Controller;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author manutero
@@ -20,107 +23,197 @@ public class MainFrame extends javax.swing.JFrame {
   @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
+    java.awt.GridBagConstraints gridBagConstraints;
 
-    jToolBar1 = new javax.swing.JToolBar();
+    jPanel4 = new javax.swing.JPanel();
+    jButton2 = new javax.swing.JButton();
+    jButton3 = new javax.swing.JButton();
+    toolBar = new javax.swing.JToolBar();
     moneyLabel = new javax.swing.JLabel();
     dolarLabel = new javax.swing.JLabel();
     dateLabel = new javax.swing.JLabel();
     mainTabbedPane = new javax.swing.JTabbedPane();
+    tab1Pane = new javax.swing.JSplitPane();
     jPanel1 = new javax.swing.JPanel();
+    directorSelectionPane = new javax.swing.JPanel();
+    label1 = new javax.swing.JLabel();
+    directorName = new javax.swing.JLabel();
+    label2 = new javax.swing.JLabel();
+    directorRating = new javax.swing.JLabel();
+    label3 = new javax.swing.JLabel();
+    directorSalary = new javax.swing.JLabel();
+    directorImage = new javax.swing.JPanel();
+    directorThumbnail = new javax.swing.JLabel();
+    directorButton = new javax.swing.JButton();
+    GuionistSelectionPane = new javax.swing.JPanel();
+    heroSelectionPane = new javax.swing.JPanel();
     jPanel2 = new javax.swing.JPanel();
-    jPanel3 = new javax.swing.JPanel();
-    jSplitPane1 = new javax.swing.JSplitPane();
-    jPanel4 = new javax.swing.JPanel();
-    jPanel5 = new javax.swing.JPanel();
-
-    setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    setTitle("Movie Maker"); // NOI18N
-    getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-    jToolBar1.setRollover(true);
-
-    moneyLabel.setText("jLabel1");
-    jToolBar1.add(moneyLabel);
-
-    dolarLabel.setText("$   ");
-    jToolBar1.add(dolarLabel);
-
-    dateLabel.setText("jLabel1");
-    jToolBar1.add(dateLabel);
-
-    getContentPane().add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 20));
-
-    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-    jPanel1.setLayout(jPanel1Layout);
-    jPanel1Layout.setHorizontalGroup(
-      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 619, Short.MAX_VALUE)
-    );
-    jPanel1Layout.setVerticalGroup(
-      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 404, Short.MAX_VALUE)
-    );
-
-    mainTabbedPane.addTab("tab1", jPanel1);
-
-    javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-    jPanel2.setLayout(jPanel2Layout);
-    jPanel2Layout.setHorizontalGroup(
-      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 619, Short.MAX_VALUE)
-    );
-    jPanel2Layout.setVerticalGroup(
-      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 404, Short.MAX_VALUE)
-    );
-
-    mainTabbedPane.addTab("tab2", jPanel2);
-
-    javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-    jPanel3.setLayout(jPanel3Layout);
-    jPanel3Layout.setHorizontalGroup(
-      jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 619, Short.MAX_VALUE)
-    );
-    jPanel3Layout.setVerticalGroup(
-      jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 404, Short.MAX_VALUE)
-    );
-
-    mainTabbedPane.addTab("tab3", jPanel3);
 
     javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
     jPanel4.setLayout(jPanel4Layout);
     jPanel4Layout.setHorizontalGroup(
       jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 606, Short.MAX_VALUE)
+      .addGap(0, 81, Short.MAX_VALUE)
     );
     jPanel4Layout.setVerticalGroup(
       jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 400, Short.MAX_VALUE)
+      .addGap(0, 418, Short.MAX_VALUE)
     );
 
-    jSplitPane1.setRightComponent(jPanel4);
+    jButton2.setText("jButton2");
 
-    javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-    jPanel5.setLayout(jPanel5Layout);
-    jPanel5Layout.setHorizontalGroup(
-      jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 0, Short.MAX_VALUE)
+    jButton3.setText("jButton3");
+
+    setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    setTitle("Movie Maker"); // NOI18N
+    getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+    toolBar.setRollover(true);
+
+    moneyLabel.setText("jLabel1");
+    toolBar.add(moneyLabel);
+
+    dolarLabel.setText("$   ");
+    toolBar.add(dolarLabel);
+
+    dateLabel.setText("jLabel1");
+    toolBar.add(dateLabel);
+
+    getContentPane().add(toolBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 20));
+
+    jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+    jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
+
+    directorSelectionPane.setBackground(java.awt.Color.white);
+    directorSelectionPane.setLayout(new java.awt.GridBagLayout());
+
+    label1.setText("Director: ");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    directorSelectionPane.add(label1, gridBagConstraints);
+
+    directorName.setText("jLabel2");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 1;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+    directorSelectionPane.add(directorName, gridBagConstraints);
+
+    label2.setText("Valoración: ");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 1;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    directorSelectionPane.add(label2, gridBagConstraints);
+
+    directorRating.setText("jLabel3");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 1;
+    gridBagConstraints.gridy = 1;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+    directorSelectionPane.add(directorRating, gridBagConstraints);
+
+    label3.setText("Salary: ");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 2;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    directorSelectionPane.add(label3, gridBagConstraints);
+
+    directorSalary.setText("jLabel4");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 1;
+    gridBagConstraints.gridy = 2;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+    directorSelectionPane.add(directorSalary, gridBagConstraints);
+
+    directorImage.setBackground(java.awt.Color.red);
+
+    directorThumbnail.setText("director_thumbnail");
+    ImageIcon directorIcon = new ImageIcon("image.jpg");
+    directorThumbnail.setIcon(directorIcon);
+    directorImage.add(directorThumbnail);
+
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.gridheight = 4;
+    directorSelectionPane.add(directorImage, gridBagConstraints);
+
+    directorButton.setText("Contratar");
+    directorButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        directorButtonActionPerformed(evt);
+      }
+    });
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 3;
+    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+    gridBagConstraints.insets = new java.awt.Insets(3, 61, 11, 2);
+    directorSelectionPane.add(directorButton, gridBagConstraints);
+
+    jPanel1.add(directorSelectionPane);
+
+    GuionistSelectionPane.setBackground(java.awt.Color.white);
+
+    javax.swing.GroupLayout GuionistSelectionPaneLayout = new javax.swing.GroupLayout(GuionistSelectionPane);
+    GuionistSelectionPane.setLayout(GuionistSelectionPaneLayout);
+    GuionistSelectionPaneLayout.setHorizontalGroup(
+      GuionistSelectionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 303, Short.MAX_VALUE)
     );
-    jPanel5Layout.setVerticalGroup(
-      jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 400, Short.MAX_VALUE)
+    GuionistSelectionPaneLayout.setVerticalGroup(
+      GuionistSelectionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 144, Short.MAX_VALUE)
     );
 
-    jSplitPane1.setLeftComponent(jPanel5);
+    jPanel1.add(GuionistSelectionPane);
 
-    mainTabbedPane.addTab("tab4", jSplitPane1);
+    heroSelectionPane.setBackground(java.awt.Color.white);
+
+    javax.swing.GroupLayout heroSelectionPaneLayout = new javax.swing.GroupLayout(heroSelectionPane);
+    heroSelectionPane.setLayout(heroSelectionPaneLayout);
+    heroSelectionPaneLayout.setHorizontalGroup(
+      heroSelectionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 303, Short.MAX_VALUE)
+    );
+    heroSelectionPaneLayout.setVerticalGroup(
+      heroSelectionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 144, Short.MAX_VALUE)
+    );
+
+    jPanel1.add(heroSelectionPane);
+
+    tab1Pane.setLeftComponent(jPanel1);
+
+    javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+    jPanel2.setLayout(jPanel2Layout);
+    jPanel2Layout.setHorizontalGroup(
+      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 586, Short.MAX_VALUE)
+    );
+    jPanel2Layout.setVerticalGroup(
+      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 440, Short.MAX_VALUE)
+    );
+
+    tab1Pane.setRightComponent(jPanel2);
+
+    mainTabbedPane.addTab("STAFF", tab1Pane);
 
     getContentPane().add(mainTabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 640, 450));
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
+
+  private void directorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_directorButtonActionPerformed
+    controller.directorButton();
+  }//GEN-LAST:event_directorButtonActionPerformed
 
 
   /**
@@ -159,21 +252,39 @@ public class MainFrame extends javax.swing.JFrame {
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JPanel GuionistSelectionPane;
   private javax.swing.JLabel dateLabel;
+  private javax.swing.JButton directorButton;
+  private javax.swing.JPanel directorImage;
+  private javax.swing.JLabel directorName;
+  private javax.swing.JLabel directorRating;
+  private javax.swing.JLabel directorSalary;
+  private javax.swing.JPanel directorSelectionPane;
+  private javax.swing.JLabel directorThumbnail;
   private javax.swing.JLabel dolarLabel;
+  private javax.swing.JPanel heroSelectionPane;
+  private javax.swing.JButton jButton2;
+  private javax.swing.JButton jButton3;
   private javax.swing.JPanel jPanel1;
   private javax.swing.JPanel jPanel2;
-  private javax.swing.JPanel jPanel3;
   private javax.swing.JPanel jPanel4;
-  private javax.swing.JPanel jPanel5;
-  private javax.swing.JSplitPane jSplitPane1;
-  private javax.swing.JToolBar jToolBar1;
+  private javax.swing.JLabel label1;
+  private javax.swing.JLabel label2;
+  private javax.swing.JLabel label3;
   private javax.swing.JTabbedPane mainTabbedPane;
   private javax.swing.JLabel moneyLabel;
+  private javax.swing.JSplitPane tab1Pane;
+  private javax.swing.JToolBar toolBar;
   // End of variables declaration//GEN-END:variables
 
   //--------------------------------------------------
   //
+  private Controller controller;
+
+  public void setController(Controller controller) {
+    this.controller = controller;
+  }
+
   public void setDate(String date) {
     dateLabel.setText(date);
   }
