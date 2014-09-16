@@ -73,7 +73,9 @@ public class PopUp extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void selectionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectionButtonActionPerformed
-    
+    Director chosen = (Director) choices.get(selectionList.getSelectedIndex());
+    controller.chosenStaff(chosen);
+    this.dispose();
   }//GEN-LAST:event_selectionButtonActionPerformed
 
   /**

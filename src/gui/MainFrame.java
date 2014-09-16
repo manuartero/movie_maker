@@ -1,6 +1,7 @@
 package gui;
 
 import controller.Controller;
+import gameLogic.Director;
 import javax.swing.ImageIcon;
 
 /**
@@ -297,6 +298,13 @@ public class MainFrame extends javax.swing.JFrame {
 
   public void setMoney(int money) {
     moneyLabel.setText(String.valueOf(money));
+  }
+
+  public void actualizeDirectorInfo(Director d) {
+    directorName.setText(d.getName());
+    directorRating.setText(String.valueOf(d.getRating()));
+    directorSalary.setText(String.valueOf(d.getSalary()));
+    directorButton.setText("Despedir");
   }
 
 }

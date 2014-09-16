@@ -80,4 +80,14 @@ public class Controller {
     hiringGui.launch();
   }
 
+  /**
+   * Msg receive from a selection PopUp: this person has been chosen
+   * <p>
+   * @param chosen
+   */
+  public void chosenStaff(Director chosen) {
+    user.hireDirector(chosen);
+    gui.actualizeDirectorInfo(chosen);
+  }
+
 }
