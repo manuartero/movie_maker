@@ -18,3 +18,5 @@ manifest.mf
 nbproject/
 
 /bin
+/build/
+/dist/
