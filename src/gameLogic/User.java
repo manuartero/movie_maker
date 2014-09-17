@@ -37,8 +37,8 @@ public class User {
   }
 
   public void fireDirector() {
-    this.director = null;
     totalExpense -= director.getSalary();
+    this.director = null;
   }
 
   /* Singleton pattern */
