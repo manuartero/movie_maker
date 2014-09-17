@@ -14,8 +14,14 @@ public class MainFrame extends javax.swing.JFrame {
    * Creates new form MainFrame
    */
   public MainFrame() {
-    this.defaultIcon = new ImageIcon(movieMaker.MovieMaker.DEFAULT_THUMBNAIL);
     initComponents();
+  }
+
+  public void launch() {
+    dateLabel.setText(gameLogic.GameConstans.STARTING_DATE);
+    moneyLabel.setText(String.valueOf(gameLogic.GameConstans.STARTING_MONEY));
+
+    setVisible(true);
   }
 
   /**
@@ -30,6 +36,8 @@ public class MainFrame extends javax.swing.JFrame {
     jPanel4 = new javax.swing.JPanel();
     jButton2 = new javax.swing.JButton();
     jButton3 = new javax.swing.JButton();
+    jFrame1 = new javax.swing.JFrame();
+    jFrame2 = new javax.swing.JFrame();
     toolBar = new javax.swing.JToolBar();
     moneyLabel = new javax.swing.JLabel();
     dolarLabel = new javax.swing.JLabel();
@@ -38,15 +46,23 @@ public class MainFrame extends javax.swing.JFrame {
     tab1Pane = new javax.swing.JSplitPane();
     jPanel1 = new javax.swing.JPanel();
     directorSelectionPane = new javax.swing.JPanel();
-    label1 = new javax.swing.JLabel();
+    final javax.swing.JLabel fixLabel1 = new javax.swing.JLabel();
     directorName = new javax.swing.JLabel();
-    label2 = new javax.swing.JLabel();
+    final javax.swing.JLabel fixLabel2 = new javax.swing.JLabel();
     directorRating = new javax.swing.JLabel();
-    label3 = new javax.swing.JLabel();
+    final javax.swing.JLabel fixLabel3 = new javax.swing.JLabel();
     directorSalary = new javax.swing.JLabel();
     directorThumbnail = new javax.swing.JLabel();
     directorButton = new javax.swing.JButton();
     GuionistSelectionPane = new javax.swing.JPanel();
+    final javax.swing.JLabel fixLabel4 = new javax.swing.JLabel();
+    guionistName = new javax.swing.JLabel();
+    final javax.swing.JLabel fixLabel5 = new javax.swing.JLabel();
+    guionistRating = new javax.swing.JLabel();
+    final javax.swing.JLabel fixLabel6 = new javax.swing.JLabel();
+    guionistSalary = new javax.swing.JLabel();
+    guionistThumbnail = new javax.swing.JLabel();
+    guionistButton = new javax.swing.JButton();
     heroSelectionPane = new javax.swing.JPanel();
     jPanel2 = new javax.swing.JPanel();
 
@@ -65,6 +81,28 @@ public class MainFrame extends javax.swing.JFrame {
 
     jButton3.setText("jButton3");
 
+    javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+    jFrame1.getContentPane().setLayout(jFrame1Layout);
+    jFrame1Layout.setHorizontalGroup(
+      jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 400, Short.MAX_VALUE)
+    );
+    jFrame1Layout.setVerticalGroup(
+      jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 300, Short.MAX_VALUE)
+    );
+
+    javax.swing.GroupLayout jFrame2Layout = new javax.swing.GroupLayout(jFrame2.getContentPane());
+    jFrame2.getContentPane().setLayout(jFrame2Layout);
+    jFrame2Layout.setHorizontalGroup(
+      jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 400, Short.MAX_VALUE)
+    );
+    jFrame2Layout.setVerticalGroup(
+      jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 300, Short.MAX_VALUE)
+    );
+
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Movie Maker"); // NOI18N
     getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -72,6 +110,11 @@ public class MainFrame extends javax.swing.JFrame {
     toolBar.setRollover(true);
 
     moneyLabel.setText("jLabel1");
+    moneyLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        moneyLabelMouseEntered(evt);
+      }
+    });
     toolBar.add(moneyLabel);
 
     dolarLabel.setText("$   ");
@@ -88,59 +131,55 @@ public class MainFrame extends javax.swing.JFrame {
     directorSelectionPane.setBackground(java.awt.Color.white);
     directorSelectionPane.setLayout(new java.awt.GridBagLayout());
 
-    label1.setText("Director: ");
+    fixLabel1.setText("Director: ");
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 0;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    directorSelectionPane.add(label1, gridBagConstraints);
+    directorSelectionPane.add(fixLabel1, gridBagConstraints);
 
-    directorName.setText("jLabel2");
+    directorName.setText("-");
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 1;
     gridBagConstraints.gridy = 0;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
     directorSelectionPane.add(directorName, gridBagConstraints);
 
-    label2.setText("Valoración: ");
+    fixLabel2.setText("Valoración: ");
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 1;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    directorSelectionPane.add(label2, gridBagConstraints);
+    directorSelectionPane.add(fixLabel2, gridBagConstraints);
 
-    directorRating.setText("jLabel3");
+    directorRating.setText("-");
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 1;
     gridBagConstraints.gridy = 1;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
     directorSelectionPane.add(directorRating, gridBagConstraints);
 
-    label3.setText("Salary: ");
+    fixLabel3.setText("Salario: ");
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 2;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    directorSelectionPane.add(label3, gridBagConstraints);
+    directorSelectionPane.add(fixLabel3, gridBagConstraints);
 
-    directorSalary.setText("jLabel4");
+    directorSalary.setText("-");
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 1;
     gridBagConstraints.gridy = 2;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
     directorSelectionPane.add(directorSalary, gridBagConstraints);
 
-    directorThumbnail.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/portraits/DEFAULT_THUMBNAIL.png"))); // NOI18N
-    directorThumbnail.setEnabled(false);
-    directorThumbnail.setMaximumSize(new java.awt.Dimension(110, 170));
-    directorThumbnail.setMinimumSize(new java.awt.Dimension(110, 170));
-    directorThumbnail.setPreferredSize(new java.awt.Dimension(110, 170));
-    directorThumbnail.setSize(new java.awt.Dimension(110, 170));
+    directorThumbnail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    directorThumbnail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/portraits/DEFAULT_THUMBNAIL.png"))); // NOI18N
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 0;
     gridBagConstraints.gridwidth = 3;
-    gridBagConstraints.gridheight = 4;
+    gridBagConstraints.gridheight = 6;
     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
     directorSelectionPane.add(directorThumbnail, gridBagConstraints);
 
@@ -152,7 +191,7 @@ public class MainFrame extends javax.swing.JFrame {
     });
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 3;
+    gridBagConstraints.gridy = 5;
     gridBagConstraints.gridwidth = 2;
     gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
     gridBagConstraints.insets = new java.awt.Insets(3, 61, 11, 2);
@@ -161,17 +200,73 @@ public class MainFrame extends javax.swing.JFrame {
     jPanel1.add(directorSelectionPane);
 
     GuionistSelectionPane.setBackground(java.awt.Color.white);
+    GuionistSelectionPane.setLayout(new java.awt.GridBagLayout());
 
-    javax.swing.GroupLayout GuionistSelectionPaneLayout = new javax.swing.GroupLayout(GuionistSelectionPane);
-    GuionistSelectionPane.setLayout(GuionistSelectionPaneLayout);
-    GuionistSelectionPaneLayout.setHorizontalGroup(
-      GuionistSelectionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 176, Short.MAX_VALUE)
-    );
-    GuionistSelectionPaneLayout.setVerticalGroup(
-      GuionistSelectionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 115, Short.MAX_VALUE)
-    );
+    fixLabel4.setText("Guionista: ");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    GuionistSelectionPane.add(fixLabel4, gridBagConstraints);
+
+    guionistName.setText("-");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 1;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+    GuionistSelectionPane.add(guionistName, gridBagConstraints);
+
+    fixLabel5.setText("Valoración: ");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 1;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    GuionistSelectionPane.add(fixLabel5, gridBagConstraints);
+
+    guionistRating.setText("-");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 1;
+    gridBagConstraints.gridy = 1;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+    GuionistSelectionPane.add(guionistRating, gridBagConstraints);
+
+    fixLabel6.setText("Salario: ");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 2;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    GuionistSelectionPane.add(fixLabel6, gridBagConstraints);
+
+    guionistSalary.setText("-");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 1;
+    gridBagConstraints.gridy = 2;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+    GuionistSelectionPane.add(guionistSalary, gridBagConstraints);
+
+    guionistThumbnail.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/portraits/DEFAULT_THUMBNAIL.png"))); // NOI18N
+    guionistThumbnail.setEnabled(false);
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.gridwidth = 3;
+    gridBagConstraints.gridheight = 4;
+    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+    GuionistSelectionPane.add(guionistThumbnail, gridBagConstraints);
+
+    guionistButton.setText("Contratar");
+    guionistButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        guionistButtonActionPerformed(evt);
+      }
+    });
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 3;
+    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+    gridBagConstraints.insets = new java.awt.Insets(3, 61, 11, 2);
+    GuionistSelectionPane.add(guionistButton, gridBagConstraints);
 
     jPanel1.add(GuionistSelectionPane);
 
@@ -185,7 +280,7 @@ public class MainFrame extends javax.swing.JFrame {
     );
     heroSelectionPaneLayout.setVerticalGroup(
       heroSelectionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 115, Short.MAX_VALUE)
+      .addGap(0, 60, Short.MAX_VALUE)
     );
 
     jPanel1.add(heroSelectionPane);
@@ -212,9 +307,17 @@ public class MainFrame extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
+  private void guionistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guionistButtonActionPerformed
+    controller.guionistButton();
+  }//GEN-LAST:event_guionistButtonActionPerformed
+
   private void directorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_directorButtonActionPerformed
     controller.directorButton();
   }//GEN-LAST:event_directorButtonActionPerformed
+
+  private void moneyLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moneyLabelMouseEntered
+    controller.moneyInfo();
+  }//GEN-LAST:event_moneyLabelMouseEntered
 
 
   /**
@@ -245,10 +348,8 @@ public class MainFrame extends javax.swing.JFrame {
         //</editor-fold>
 
     /* Create and display the form */
-    java.awt.EventQueue.invokeLater(new Runnable() {
-      public void run() {
-        new MainFrame().setVisible(true);
-      }
+    java.awt.EventQueue.invokeLater(() -> {
+      new MainFrame().setVisible(true);
     });
   }
 
@@ -262,15 +363,19 @@ public class MainFrame extends javax.swing.JFrame {
   private javax.swing.JPanel directorSelectionPane;
   private javax.swing.JLabel directorThumbnail;
   private javax.swing.JLabel dolarLabel;
+  private javax.swing.JButton guionistButton;
+  private javax.swing.JLabel guionistName;
+  private javax.swing.JLabel guionistRating;
+  private javax.swing.JLabel guionistSalary;
+  private javax.swing.JLabel guionistThumbnail;
   private javax.swing.JPanel heroSelectionPane;
   private javax.swing.JButton jButton2;
   private javax.swing.JButton jButton3;
+  private javax.swing.JFrame jFrame1;
+  private javax.swing.JFrame jFrame2;
   private javax.swing.JPanel jPanel1;
   private javax.swing.JPanel jPanel2;
   private javax.swing.JPanel jPanel4;
-  private javax.swing.JLabel label1;
-  private javax.swing.JLabel label2;
-  private javax.swing.JLabel label3;
   private javax.swing.JTabbedPane mainTabbedPane;
   private javax.swing.JLabel moneyLabel;
   private javax.swing.JSplitPane tab1Pane;
@@ -281,18 +386,13 @@ public class MainFrame extends javax.swing.JFrame {
   //
   private Controller controller;
   private ImageIcon directorIcon;
-  private final ImageIcon defaultIcon;
+  private ImageIcon guionistIcon;
 
   public void setController(Controller controller) {
     this.controller = controller;
   }
 
-  public void setDirectorIcon(String imagePath) {
-    this.directorIcon = new ImageIcon(imagePath);
-    directorThumbnail.setIcon(directorIcon);
-  }
-
-  public void setMoney(int money) {
+  public void setMoney(double money) {
     moneyLabel.setText(String.valueOf(money));
   }
 
@@ -300,7 +400,7 @@ public class MainFrame extends javax.swing.JFrame {
     dateLabel.setText(date);
   }
   
-  public void actualizeDirectorInfo(Director d) {
+  public void displayDirector(Director d) {
     directorName.setText(d.getName());
     directorRating.setText(String.valueOf(d.getRating()));
     directorSalary.setText(String.valueOf(d.getSalary()));
@@ -308,10 +408,17 @@ public class MainFrame extends javax.swing.JFrame {
     directorButton.setText("Despedir");
   }
 
-  public void launch() {
-    dateLabel.setText(gameLogic.GameConstans.STARTING_DATE);
-    moneyLabel.setText(String.valueOf(gameLogic.GameConstans.STARTING_MONEY));
-    setVisible(true);
+  private void setDirectorIcon(String imagePath) {
+    this.directorIcon = new ImageIcon(imagePath);
+    directorThumbnail.setIcon(directorIcon);
+  }
+
+  public void displayNoDirector() {
+    directorName.setText("-");
+    directorRating.setText("-");
+    directorSalary.setText("-");
+    // thumbnail
+    directorButton.setText("Contratar");
   }
 
 }

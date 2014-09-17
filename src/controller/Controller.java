@@ -3,12 +3,15 @@ package controller;
 import gameLogic.AvaibleDirectors;
 import gameLogic.Director;
 import gameLogic.User;
+import gui.InfoPopUp;
 import gui.MainFrame;
 import gui.PopUp;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import timeSimulation.TimeSimulator;
+import utils.MapHelper;
 
 /**
  *
@@ -18,9 +21,11 @@ public class Controller {
   private final MainFrame gui;
   private final TimeSimulator timeSimulator;
   private final User user;
+  private boolean currentlyShowingInfo;
 
   public Controller(MainFrame frame) {
     user = User.getInstance();
+    currentlyShowingInfo = false;
     this.gui = frame;
     timeSimulator = new TimeSimulator(this);
   }
@@ -69,6 +74,7 @@ public class Controller {
   public void directorButton() {
     if (user.hasHireDirector()) {
       user.fireDirector();
+      gui.displayNoDirector();
     } else {
       launchHiringGUI(AvaibleDirectors.directorList());
     }
@@ -87,7 +93,31 @@ public class Controller {
    */
   public void chosenStaff(Director chosen) {
     user.hireDirector(chosen);
-    gui.actualizeDirectorInfo(chosen);
+    gui.displayDirector(chosen);
   }
 
+  /**
+   * Msg receive from Gui: guionistButton preseed
+   */
+  public void guionistButton() {
+    throw new UnsupportedOperationException("guionistButton not supported yet.");
+  }
+
+  public void moneyInfo() {
+    if (!currentlyShowingInfo) {
+      Map<String, Double> userExpenditure = user.getExpenditure();
+      launchInfoPopUp(userExpenditure);
+    }
+  }
+
+  private void launchInfoPopUp(Map<String, Double> map) {
+    InfoPopUp infoGui = new InfoPopUp(MapHelper.toTableModel(map));
+    infoGui.setController(this);
+    currentlyShowingInfo = true;
+    infoGui.launch();
+  }
+
+  public void disposeInfoGui() {
+    currentlyShowingInfo = false;
+  }
 }

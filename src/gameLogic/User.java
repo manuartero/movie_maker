@@ -1,5 +1,8 @@
 package gameLogic;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Singleton pattern, just one user per game
  *
@@ -7,9 +10,9 @@ package gameLogic;
  */
 public class User {
 
-  private int money;
-  private int totalExpense;
-  private final int basicExpense;
+  private double money;
+  private double totalExpenditure;
+  private double basicExpenditure;
   private Director director;
 
   public static User getInstance() {
@@ -20,10 +23,10 @@ public class User {
   }
 
   public void payDay() {
-    money -= totalExpense;
+    money -= totalExpenditure;
   }
 
-  public int getMoney() {
+  public double getMoney() {
     return money;
   }
 
@@ -33,11 +36,11 @@ public class User {
 
   public void hireDirector(Director director) {
     this.director = director;
-    totalExpense += director.getSalary();
+    totalExpenditure += director.getSalary();
   }
 
   public void fireDirector() {
-    totalExpense -= director.getSalary();
+    totalExpenditure -= director.getSalary();
     this.director = null;
   }
 
@@ -46,9 +49,19 @@ public class User {
 
   private User() {
     money = GameConstans.STARTING_MONEY;
-    basicExpense = 1;
-    totalExpense = basicExpense;
+    basicExpenditure = 1;
+    totalExpenditure = basicExpenditure;
     director = null;
+  }
+
+  public Map<String, Double> getExpenditure() {
+    Map<String, Double> response = new HashMap<>();
+    if (hasHireDirector()) {
+      response.put("Director", director.getSalary());
+    }
+    response.put("Gastos privados", basicExpenditure);
+    response.put("Total", totalExpenditure);
+    return response;
   }
 
 }
