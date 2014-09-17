@@ -17,7 +17,7 @@ public class AvaibleDirectors {
   public static List<Director> directorList() {
     if (directorList == null) {
       directorList = new LinkedList<>();
-      List<String> allNames = FileHelper.readTextFile(MovieMaker.DIRECTORS_FILE_PATH);
+      List<String> allNames = FileHelper.readTextFile(MovieMaker.DIRECTOR_LIST_FILE_PATH);
       List<String> selectedNames = RandomHelper.selectQItemsFromList(allNames, 100);
       for (String name : selectedNames) {
         Director director = Director.createNewDirector(name);

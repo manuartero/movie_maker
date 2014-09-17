@@ -45,6 +45,9 @@ public final class RandomHelper {
     return response;
   }
 
+  /**
+   * Helper class, no need to extend or instanciate it
+   */
   private RandomHelper() {
     throw new AssertionError();
   }

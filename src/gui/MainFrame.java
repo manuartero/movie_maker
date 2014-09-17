@@ -14,6 +14,7 @@ public class MainFrame extends javax.swing.JFrame {
    * Creates new form MainFrame
    */
   public MainFrame() {
+    this.defaultIcon = new ImageIcon(movieMaker.MovieMaker.DEFAULT_THUMBNAIL);
     initComponents();
   }
 
@@ -43,7 +44,6 @@ public class MainFrame extends javax.swing.JFrame {
     directorRating = new javax.swing.JLabel();
     label3 = new javax.swing.JLabel();
     directorSalary = new javax.swing.JLabel();
-    directorImage = new javax.swing.JPanel();
     directorThumbnail = new javax.swing.JLabel();
     directorButton = new javax.swing.JButton();
     GuionistSelectionPane = new javax.swing.JPanel();
@@ -130,19 +130,19 @@ public class MainFrame extends javax.swing.JFrame {
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
     directorSelectionPane.add(directorSalary, gridBagConstraints);
 
-    directorImage.setBackground(java.awt.Color.red);
-
-    directorThumbnail.setText("director_thumbnail");
-    ImageIcon directorIcon = new ImageIcon("image.jpg");
-    directorThumbnail.setIcon(directorIcon);
-    directorImage.add(directorThumbnail);
-
+    directorThumbnail.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/portraits/DEFAULT_THUMBNAIL.png"))); // NOI18N
+    directorThumbnail.setEnabled(false);
+    directorThumbnail.setMaximumSize(new java.awt.Dimension(110, 170));
+    directorThumbnail.setMinimumSize(new java.awt.Dimension(110, 170));
+    directorThumbnail.setPreferredSize(new java.awt.Dimension(110, 170));
+    directorThumbnail.setSize(new java.awt.Dimension(110, 170));
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.gridwidth = 3;
     gridBagConstraints.gridheight = 4;
-    directorSelectionPane.add(directorImage, gridBagConstraints);
+    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+    directorSelectionPane.add(directorThumbnail, gridBagConstraints);
 
     directorButton.setText("Contratar");
     directorButton.addActionListener(new java.awt.event.ActionListener() {
@@ -166,11 +166,11 @@ public class MainFrame extends javax.swing.JFrame {
     GuionistSelectionPane.setLayout(GuionistSelectionPaneLayout);
     GuionistSelectionPaneLayout.setHorizontalGroup(
       GuionistSelectionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 303, Short.MAX_VALUE)
+      .addGap(0, 176, Short.MAX_VALUE)
     );
     GuionistSelectionPaneLayout.setVerticalGroup(
       GuionistSelectionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 144, Short.MAX_VALUE)
+      .addGap(0, 115, Short.MAX_VALUE)
     );
 
     jPanel1.add(GuionistSelectionPane);
@@ -181,11 +181,11 @@ public class MainFrame extends javax.swing.JFrame {
     heroSelectionPane.setLayout(heroSelectionPaneLayout);
     heroSelectionPaneLayout.setHorizontalGroup(
       heroSelectionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 303, Short.MAX_VALUE)
+      .addGap(0, 176, Short.MAX_VALUE)
     );
     heroSelectionPaneLayout.setVerticalGroup(
       heroSelectionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 144, Short.MAX_VALUE)
+      .addGap(0, 115, Short.MAX_VALUE)
     );
 
     jPanel1.add(heroSelectionPane);
@@ -196,7 +196,7 @@ public class MainFrame extends javax.swing.JFrame {
     jPanel2.setLayout(jPanel2Layout);
     jPanel2Layout.setHorizontalGroup(
       jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 586, Short.MAX_VALUE)
+      .addGap(0, 430, Short.MAX_VALUE)
     );
     jPanel2Layout.setVerticalGroup(
       jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,7 +256,6 @@ public class MainFrame extends javax.swing.JFrame {
   private javax.swing.JPanel GuionistSelectionPane;
   private javax.swing.JLabel dateLabel;
   private javax.swing.JButton directorButton;
-  private javax.swing.JPanel directorImage;
   private javax.swing.JLabel directorName;
   private javax.swing.JLabel directorRating;
   private javax.swing.JLabel directorSalary;
@@ -281,30 +280,38 @@ public class MainFrame extends javax.swing.JFrame {
   //--------------------------------------------------
   //
   private Controller controller;
+  private ImageIcon directorIcon;
+  private final ImageIcon defaultIcon;
 
   public void setController(Controller controller) {
     this.controller = controller;
   }
 
-  public void setDate(String date) {
-    dateLabel.setText(date);
-  }
-
-  public void launch() {
-    dateLabel.setText(gameLogic.GameConstans.STARTING_DATE);
-    moneyLabel.setText(String.valueOf(gameLogic.GameConstans.STARTING_MONEY));
-    setVisible(true);
+  public void setDirectorIcon(String imagePath) {
+    this.directorIcon = new ImageIcon(imagePath);
+    directorThumbnail.setIcon(directorIcon);
   }
 
   public void setMoney(int money) {
     moneyLabel.setText(String.valueOf(money));
   }
 
+  public void setDate(String date) {
+    dateLabel.setText(date);
+  }
+  
   public void actualizeDirectorInfo(Director d) {
     directorName.setText(d.getName());
     directorRating.setText(String.valueOf(d.getRating()));
     directorSalary.setText(String.valueOf(d.getSalary()));
+    setDirectorIcon(d.getThumbnail());
     directorButton.setText("Despedir");
+  }
+
+  public void launch() {
+    dateLabel.setText(gameLogic.GameConstans.STARTING_DATE);
+    moneyLabel.setText(String.valueOf(gameLogic.GameConstans.STARTING_MONEY));
+    setVisible(true);
   }
 
 }
