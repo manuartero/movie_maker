@@ -14,7 +14,13 @@ public class User {
   private double totalExpenditure;
   private double basicExpenditure;
   private Director director;
+  private ScriptWriter guionist;
 
+  /**
+   * Singleton pattern
+   * <p>
+   * @return instance
+   */
   public static User getInstance() {
     if (instance == null) {
       instance = new User();
@@ -22,29 +28,6 @@ public class User {
     return instance;
   }
 
-  public void payDay() {
-    money -= totalExpenditure;
-  }
-
-  public double getMoney() {
-    return money;
-  }
-
-  public boolean hasHireDirector() {
-    return director != null;
-  }
-
-  public void hireDirector(Director director) {
-    this.director = director;
-    totalExpenditure += director.getSalary();
-  }
-
-  public void fireDirector() {
-    totalExpenditure -= director.getSalary();
-    this.director = null;
-  }
-
-  /* Singleton pattern */
   private static User instance = null;
 
   private User() {
@@ -54,9 +37,62 @@ public class User {
     director = null;
   }
 
+  public void payDay() {
+    money -= totalExpenditure;
+  }
+
+
+  public boolean hasHiredDirector() {
+    return director != null;
+  }
+
+  public boolean hasHiredGuionist() {
+    return guionist != null;
+  }
+
+  /**
+   * @param director
+   * @return actual total expenditure
+   */
+  public double hireDirector(Director director) {
+    this.director = director;
+    totalExpenditure += director.getSalary();
+    return totalExpenditure;
+  }
+
+  /**
+   * @param guionist
+   * @return actual total expenditure
+   */
+  public double hireGuionist(ScriptWriter guionist) {
+    this.guionist = guionist;
+    totalExpenditure += guionist.getSalary();
+    return totalExpenditure;
+  }
+
+  public double fireDirector() {
+    if (hasHiredDirector()) {
+      totalExpenditure -= director.getSalary();
+      this.director = null;
+    }
+    return totalExpenditure;
+  }
+
+  public double fireGuionist() {
+    if (hasHiredGuionist()) {
+      totalExpenditure -= guionist.getSalary();
+      this.guionist = null;
+    }
+    return totalExpenditure;
+  }
+
+  public double getMoney() {
+    return money;
+  }
+
   public Map<String, Double> getExpenditure() {
     Map<String, Double> response = new HashMap<>();
-    if (hasHireDirector()) {
+    if (hasHiredDirector()) {
       response.put("Director", director.getSalary());
     }
     response.put("Gastos privados", basicExpenditure);

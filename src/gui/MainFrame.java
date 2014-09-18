@@ -3,6 +3,7 @@ package gui;
 import controller.Controller;
 import gameLogic.Director;
 import javax.swing.ImageIcon;
+import utils.GuiHelper;
 
 /**
  *
@@ -20,6 +21,9 @@ public class MainFrame extends javax.swing.JFrame {
   public void launch() {
     dateLabel.setText(gameLogic.GameConstans.STARTING_DATE);
     moneyLabel.setText(String.valueOf(gameLogic.GameConstans.STARTING_MONEY));
+    ImageIcon defaultImage = new ImageIcon(GuiHelper.getPortrait("DEFAULT_THUMBNAIL"));
+    directorThumbnail.setIcon(defaultImage);
+    writerThumbnail.setIcon(defaultImage);
 
     setVisible(true);
   }
@@ -61,7 +65,7 @@ public class MainFrame extends javax.swing.JFrame {
     guionistRating = new javax.swing.JLabel();
     final javax.swing.JLabel fixLabel6 = new javax.swing.JLabel();
     guionistSalary = new javax.swing.JLabel();
-    guionistThumbnail = new javax.swing.JLabel();
+    writerThumbnail = new javax.swing.JLabel();
     guionistButton = new javax.swing.JButton();
     heroSelectionPane = new javax.swing.JPanel();
     jPanel2 = new javax.swing.JPanel();
@@ -244,15 +248,15 @@ public class MainFrame extends javax.swing.JFrame {
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
     GuionistSelectionPane.add(guionistSalary, gridBagConstraints);
 
-    guionistThumbnail.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/portraits/DEFAULT_THUMBNAIL.png"))); // NOI18N
-    guionistThumbnail.setEnabled(false);
+    writerThumbnail.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/portraits/DEFAULT_THUMBNAIL.png"))); // NOI18N
+    writerThumbnail.setEnabled(false);
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 0;
     gridBagConstraints.gridwidth = 3;
     gridBagConstraints.gridheight = 4;
     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-    GuionistSelectionPane.add(guionistThumbnail, gridBagConstraints);
+    GuionistSelectionPane.add(writerThumbnail, gridBagConstraints);
 
     guionistButton.setText("Contratar");
     guionistButton.addActionListener(new java.awt.event.ActionListener() {
@@ -367,7 +371,6 @@ public class MainFrame extends javax.swing.JFrame {
   private javax.swing.JLabel guionistName;
   private javax.swing.JLabel guionistRating;
   private javax.swing.JLabel guionistSalary;
-  private javax.swing.JLabel guionistThumbnail;
   private javax.swing.JPanel heroSelectionPane;
   private javax.swing.JButton jButton2;
   private javax.swing.JButton jButton3;
@@ -380,13 +383,12 @@ public class MainFrame extends javax.swing.JFrame {
   private javax.swing.JLabel moneyLabel;
   private javax.swing.JSplitPane tab1Pane;
   private javax.swing.JToolBar toolBar;
+  private javax.swing.JLabel writerThumbnail;
   // End of variables declaration//GEN-END:variables
 
   //--------------------------------------------------
   //
   private Controller controller;
-  private ImageIcon directorIcon;
-  private ImageIcon guionistIcon;
 
   public void setController(Controller controller) {
     this.controller = controller;
@@ -409,15 +411,16 @@ public class MainFrame extends javax.swing.JFrame {
   }
 
   private void setDirectorIcon(String imagePath) {
-    this.directorIcon = new ImageIcon(imagePath);
-    directorThumbnail.setIcon(directorIcon);
+    ImageIcon icon = new ImageIcon(GuiHelper.getPortrait(imagePath));
+    directorThumbnail.setIcon(icon);
   }
 
   public void displayNoDirector() {
     directorName.setText("-");
     directorRating.setText("-");
     directorSalary.setText("-");
-    // thumbnail
+    ImageIcon defaultImage = new ImageIcon(GuiHelper.getPortrait("DEFAULT_THUMBNAIL"));
+    directorThumbnail.setIcon(defaultImage);
     directorButton.setText("Contratar");
   }
 

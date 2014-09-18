@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import timeSimulation.TimeSimulator;
-import utils.MapHelper;
+import utils.GuiHelper;
 
 /**
  *
@@ -72,7 +72,7 @@ public class Controller {
    * Msg receive from gui: directorButton button pressed
    */
   public void directorButton() {
-    if (user.hasHireDirector()) {
+    if (user.hasHiredDirector()) {
       user.fireDirector();
       gui.displayNoDirector();
     } else {
@@ -103,6 +103,9 @@ public class Controller {
     throw new UnsupportedOperationException("guionistButton not supported yet.");
   }
 
+  /**
+   * Msg from Gui: mouse over movey laberl => display user expenditure details
+   */
   public void moneyInfo() {
     if (!currentlyShowingInfo) {
       Map<String, Double> userExpenditure = user.getExpenditure();
@@ -111,7 +114,7 @@ public class Controller {
   }
 
   private void launchInfoPopUp(Map<String, Double> map) {
-    InfoPopUp infoGui = new InfoPopUp(MapHelper.toTableModel(map));
+    InfoPopUp infoGui = new InfoPopUp(GuiHelper.toTableModel(map));
     infoGui.setController(this);
     currentlyShowingInfo = true;
     infoGui.launch();

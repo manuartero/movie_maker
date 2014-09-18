@@ -2,6 +2,7 @@ package movieMaker;
 
 import controller.Controller;
 import gui.MainFrame;
+import javax.swing.SwingUtilities;
 
 /**
  * Main class.
@@ -14,11 +15,7 @@ public class MovieMaker {
   public static String DIRECTOR_LIST_FILE_PATH
           = MovieMaker.class.getClassLoader().getResource("resources/directors.txt").getPath();
 
-  public static String PORTRAITS_FOLDER_PATH
-          = MovieMaker.class.getClassLoader().getResource("resources/portraits").getPath();
-
-  public static String DEFAULT_THUMBNAIL
-          = MovieMaker.class.getClassLoader().getResource("resources/portraits/DEFAULT_THUMBNAIL.png").getPath();
+  public static String PORTRAITS_FOLDER_PATH = "resources/portraits/";
 
   /**
    * Lunch the app.
@@ -27,9 +24,12 @@ public class MovieMaker {
    * @param args
    */
   public static void main(String[] args) {
-    MainFrame gui = new MainFrame();
-    Controller c = new Controller(gui);
-    c.run();
+    System.out.println(movieMaker.MovieMaker.class.getClassLoader().getResource("resources/portraits/thumb-10.png").getPath());
+    SwingUtilities.invokeLater(() -> {
+      MainFrame gui = new MainFrame();
+      Controller c = new Controller(gui);
+      c.run();
+    });
   }
 
 }
