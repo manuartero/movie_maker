@@ -1,4 +1,4 @@
-package gameLogic;
+package gameLogic.staff;
 
 import utils.RandomHelper;
 
@@ -6,7 +6,7 @@ import utils.RandomHelper;
  *
  * @author manutero
  */
-public class Director extends AbstractPerson {
+public class Director extends AbstractStaff {
 
   private final String thumbnail;
   private static int lastThumbnailInUse = 0;

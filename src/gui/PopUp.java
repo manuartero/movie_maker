@@ -1,22 +1,30 @@
 package gui;
 
 import controller.Controller;
-import gameLogic.Director;
+import gameLogic.staff.AbstractStaff;
 import java.util.List;
 import javax.swing.DefaultListModel;
 
 /**
  *
  * @author manutero
+ * @param <T>
  */
-public class PopUp extends javax.swing.JFrame {
+public class PopUp<T extends AbstractStaff> extends javax.swing.JFrame {
+
+  private Controller controller;
+  private final DefaultListModel avaibleChoices;
 
   /**
-   * Creates new form PopUp
-   * @param choices
+   * Creates new form PopUp for hiring staff.
+   * In order to make it versatile, it's possible to create a new popUp containing
+   * directors, scriptWriters, etc. 
+   * <p>
+   * @param <T>
+   * @param candidates
    */
-  public PopUp(final List<Director> choices) {
-    this.choices = createListModel(choices);
+  public <T extends AbstractStaff> PopUp(final List<T> candidates) {
+    this.avaibleChoices = createListModel(candidates);
     initComponents();
   }
 
@@ -38,7 +46,7 @@ public class PopUp extends javax.swing.JFrame {
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     setTitle("Selección del Staff");
     setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-    setPreferredSize(new java.awt.Dimension(200, 350));
+    setPreferredSize(new java.awt.Dimension(264, 350));
     setResizable(false);
     setSize(new java.awt.Dimension(200, 350));
     setType(java.awt.Window.Type.POPUP);
@@ -47,7 +55,7 @@ public class PopUp extends javax.swing.JFrame {
     jSplitPane2.setDividerSize(3);
     jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-    selectionList.setModel(this.choices);
+    selectionList.setModel(this.avaibleChoices);
     selectionList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
     jScrollPane1.setViewportView(selectionList);
 
@@ -59,7 +67,7 @@ public class PopUp extends javax.swing.JFrame {
         selectionButtonActionPerformed(evt);
       }
     });
-    jSplitPane2.setRightComponent(selectionButton);
+    jSplitPane2.setBottomComponent(selectionButton);
 
     getContentPane().add(jSplitPane2, java.awt.BorderLayout.CENTER);
 
@@ -67,8 +75,8 @@ public class PopUp extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void selectionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectionButtonActionPerformed
-    Director chosen = (Director) choices.get(selectionList.getSelectedIndex());
-    controller.chosenStaff(chosen);
+    Object selected = avaibleChoices.get(selectionList.getSelectedIndex());
+    controller.chosenStaff((T) selected);
     this.dispose();
   }//GEN-LAST:event_selectionButtonActionPerformed
 
@@ -82,25 +90,21 @@ public class PopUp extends javax.swing.JFrame {
 
   // --------------------
 
-  private DefaultListModel choices;
-  private Controller controller;
-
   public void setController(Controller controller) {
     this.controller = controller;
   }
 
-  private DefaultListModel createListModel(final List<Director> choices) {
+  private <T extends AbstractStaff> DefaultListModel createListModel(final List<T> list) {
     DefaultListModel response = new DefaultListModel();
     int i = 0;
-    for (Director director : choices) {
-      response.add(i, director);
+    for (T element : list) {
+      response.add(i, element);
     }
     return response;
   }
 
+  // FiXME: delete this
   public void launch() {
-
-    // runtime configuration
     setVisible(true);
   }
 

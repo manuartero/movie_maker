@@ -1,5 +1,7 @@
 package gameLogic;
 
+import gameLogic.staff.Director;
+import gameLogic.staff.ScriptWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +16,7 @@ public class User {
   private double totalExpenditure;
   private double basicExpenditure;
   private Director director;
-  private ScriptWriter guionist;
+  private ScriptWriter scriptWriter;
 
   /**
    * Singleton pattern
@@ -46,8 +48,8 @@ public class User {
     return director != null;
   }
 
-  public boolean hasHiredGuionist() {
-    return guionist != null;
+  public boolean hasHiredScriptWriter() {
+    return scriptWriter != null;
   }
 
   /**
@@ -65,7 +67,7 @@ public class User {
    * @return actual total expenditure
    */
   public double hireGuionist(ScriptWriter guionist) {
-    this.guionist = guionist;
+    this.scriptWriter = guionist;
     totalExpenditure += guionist.getSalary();
     return totalExpenditure;
   }
@@ -79,9 +81,9 @@ public class User {
   }
 
   public double fireGuionist() {
-    if (hasHiredGuionist()) {
-      totalExpenditure -= guionist.getSalary();
-      this.guionist = null;
+    if (hasHiredScriptWriter()) {
+      totalExpenditure -= scriptWriter.getSalary();
+      this.scriptWriter = null;
     }
     return totalExpenditure;
   }
@@ -94,6 +96,9 @@ public class User {
     Map<String, Double> response = new HashMap<>();
     if (hasHiredDirector()) {
       response.put("Director", director.getSalary());
+    }
+    if (hasHiredScriptWriter()) {
+      response.put("Guionista", scriptWriter.getSalary());
     }
     response.put("Gastos privados", basicExpenditure);
     response.put("Total", totalExpenditure);

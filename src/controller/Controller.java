@@ -1,8 +1,10 @@
 package controller;
 
-import gameLogic.AvaibleDirectors;
-import gameLogic.Director;
+import gameLogic.AvaiblePeople;
 import gameLogic.User;
+import gameLogic.staff.AbstractStaff;
+import gameLogic.staff.Director;
+import gameLogic.staff.ScriptWriter;
 import gui.InfoPopUp;
 import gui.MainFrame;
 import gui.PopUp;
@@ -31,18 +33,15 @@ public class Controller {
   }
 
   public void run() {
-    AvaibleDirectors.directorList();
+    AvaiblePeople.directorList();
     gui.setController(this);
     gui.launch();
     timeSimulator.startTimeSimulation();
   }
 
   /**
-   * Msg receive from timeSimulator: new month
-   * <ul>
-   * <li> PayDay
-   * <li> Refresh gui
-   * </ul>
+   * timeSimulator: new month => pay day and display new month on gui
+   * <p>
    * @param calendar actual date
    */
   public void nextMonth(Calendar calendar) {
@@ -53,7 +52,7 @@ public class Controller {
   }
 
   /**
-   * Msg receive from timeSimulator: end of the game
+   * timeSimulator: end of the game
    */
   public void end() {
     gui.dispose();
@@ -61,7 +60,7 @@ public class Controller {
   }
 
   /**
-   * Msg receive from timeSimulator: quick progress
+   * timeSimulator: quick progress
    */
   public void makeProgress() {
     user.payDay();
@@ -69,42 +68,64 @@ public class Controller {
   }
 
   /**
-   * Msg receive from gui: directorButton button pressed
+   * gui (MainFrame): director button pressed => start hiring process or fire director
    */
   public void directorButton() {
     if (user.hasHiredDirector()) {
       user.fireDirector();
       gui.displayNoDirector();
     } else {
-      launchHiringGUI(AvaibleDirectors.directorList());
+      launchHiringGUI(AvaiblePeople.directorList());
     }
   }
 
-  private void launchHiringGUI(List<Director> choices) {
+  /**
+   * gui (MainFrame) : scriptWriter button pressed => start hiring process or fire writer
+   */
+  public void scriptWriterButton() {
+    if (user.hasHiredScriptWriter()) {
+      user.fireGuionist();
+      gui.displayNoScriptWriter();
+    } else {
+      launchHiringGUI(AvaiblePeople.scriptWriterList());
+    }
+  }
+
+  private <T extends AbstractStaff> void launchHiringGUI(List<T> choices) {
     PopUp hiringGui = new PopUp(choices);
     hiringGui.setController(this);
     hiringGui.launch();
   }
 
   /**
-   * Msg receive from a selection PopUp: this person has been chosen
+   * @deprecated launchHiringGUI(list, Director.class)
+   */
+  private <T extends AbstractStaff> void launchHiringGUI(List<T> choices, Class<T> type) {
+    PopUp hiringGui = new PopUp(choices);
+    hiringGui.setController(this);
+    hiringGui.launch();
+  }
+
+  /**
+   * selection PopUp: this person has been chosen => hire new staff
    * <p>
-   * @param chosen
+   * @param <T>
+   * @param selectedCandidate
    */
-  public void chosenStaff(Director chosen) {
-    user.hireDirector(chosen);
-    gui.displayDirector(chosen);
+  public <T extends AbstractStaff> void chosenStaff(T selectedCandidate) {
+    if (selectedCandidate instanceof Director) {
+      Director director = (Director) selectedCandidate;
+      user.hireDirector(director);
+      gui.displayDirector(director);
+    } else if (selectedCandidate instanceof ScriptWriter) {
+      ScriptWriter writer = (ScriptWriter) selectedCandidate;
+      user.hireGuionist(writer);
+      gui.displayScriptWriter(writer);
+    }
   }
 
   /**
-   * Msg receive from Gui: guionistButton preseed
-   */
-  public void guionistButton() {
-    throw new UnsupportedOperationException("guionistButton not supported yet.");
-  }
-
-  /**
-   * Msg from Gui: mouse over movey laberl => display user expenditure details
+   * gui: mouse over movey label => display user expenditure details
    */
   public void moneyInfo() {
     if (!currentlyShowingInfo) {

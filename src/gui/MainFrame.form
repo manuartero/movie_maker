@@ -283,7 +283,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="guionistName">
+                    <Component class="javax.swing.JLabel" name="writerName">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
@@ -307,7 +307,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="guionistRating">
+                    <Component class="javax.swing.JLabel" name="writerRating">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
@@ -331,7 +331,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="guionistSalary">
+                    <Component class="javax.swing.JLabel" name="writerSalary">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
@@ -343,10 +343,9 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="writerThumbnail">
                       <Properties>
-                        <Property name="disabledIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/resources/portraits/DEFAULT_THUMBNAIL.png"/>
                         </Property>
-                        <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -354,12 +353,12 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JButton" name="guionistButton">
+                    <Component class="javax.swing.JButton" name="writerButton">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Contratar"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guionistButtonActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="writerButtonActionPerformed"/>
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

@@ -1,7 +1,8 @@
 package gui;
 
 import controller.Controller;
-import gameLogic.Director;
+import gameLogic.staff.Director;
+import gameLogic.staff.ScriptWriter;
 import javax.swing.ImageIcon;
 import utils.GuiHelper;
 
@@ -18,6 +19,7 @@ public class MainFrame extends javax.swing.JFrame {
     initComponents();
   }
 
+  //FIXME: delete this method, just call setVisible from controller the "runtime" conf could be done in design mode
   public void launch() {
     dateLabel.setText(gameLogic.GameConstans.STARTING_DATE);
     moneyLabel.setText(String.valueOf(gameLogic.GameConstans.STARTING_MONEY));
@@ -60,13 +62,13 @@ public class MainFrame extends javax.swing.JFrame {
     directorButton = new javax.swing.JButton();
     GuionistSelectionPane = new javax.swing.JPanel();
     final javax.swing.JLabel fixLabel4 = new javax.swing.JLabel();
-    guionistName = new javax.swing.JLabel();
+    writerName = new javax.swing.JLabel();
     final javax.swing.JLabel fixLabel5 = new javax.swing.JLabel();
-    guionistRating = new javax.swing.JLabel();
+    writerRating = new javax.swing.JLabel();
     final javax.swing.JLabel fixLabel6 = new javax.swing.JLabel();
-    guionistSalary = new javax.swing.JLabel();
+    writerSalary = new javax.swing.JLabel();
     writerThumbnail = new javax.swing.JLabel();
-    guionistButton = new javax.swing.JButton();
+    writerButton = new javax.swing.JButton();
     heroSelectionPane = new javax.swing.JPanel();
     jPanel2 = new javax.swing.JPanel();
 
@@ -213,12 +215,12 @@ public class MainFrame extends javax.swing.JFrame {
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
     GuionistSelectionPane.add(fixLabel4, gridBagConstraints);
 
-    guionistName.setText("-");
+    writerName.setText("-");
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 1;
     gridBagConstraints.gridy = 0;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-    GuionistSelectionPane.add(guionistName, gridBagConstraints);
+    GuionistSelectionPane.add(writerName, gridBagConstraints);
 
     fixLabel5.setText("Valoración: ");
     gridBagConstraints = new java.awt.GridBagConstraints();
@@ -227,12 +229,12 @@ public class MainFrame extends javax.swing.JFrame {
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
     GuionistSelectionPane.add(fixLabel5, gridBagConstraints);
 
-    guionistRating.setText("-");
+    writerRating.setText("-");
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 1;
     gridBagConstraints.gridy = 1;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-    GuionistSelectionPane.add(guionistRating, gridBagConstraints);
+    GuionistSelectionPane.add(writerRating, gridBagConstraints);
 
     fixLabel6.setText("Salario: ");
     gridBagConstraints = new java.awt.GridBagConstraints();
@@ -241,15 +243,14 @@ public class MainFrame extends javax.swing.JFrame {
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
     GuionistSelectionPane.add(fixLabel6, gridBagConstraints);
 
-    guionistSalary.setText("-");
+    writerSalary.setText("-");
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 1;
     gridBagConstraints.gridy = 2;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-    GuionistSelectionPane.add(guionistSalary, gridBagConstraints);
+    GuionistSelectionPane.add(writerSalary, gridBagConstraints);
 
-    writerThumbnail.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/portraits/DEFAULT_THUMBNAIL.png"))); // NOI18N
-    writerThumbnail.setEnabled(false);
+    writerThumbnail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/portraits/DEFAULT_THUMBNAIL.png"))); // NOI18N
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 0;
@@ -258,10 +259,10 @@ public class MainFrame extends javax.swing.JFrame {
     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
     GuionistSelectionPane.add(writerThumbnail, gridBagConstraints);
 
-    guionistButton.setText("Contratar");
-    guionistButton.addActionListener(new java.awt.event.ActionListener() {
+    writerButton.setText("Contratar");
+    writerButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        guionistButtonActionPerformed(evt);
+        writerButtonActionPerformed(evt);
       }
     });
     gridBagConstraints = new java.awt.GridBagConstraints();
@@ -270,7 +271,7 @@ public class MainFrame extends javax.swing.JFrame {
     gridBagConstraints.gridwidth = 2;
     gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
     gridBagConstraints.insets = new java.awt.Insets(3, 61, 11, 2);
-    GuionistSelectionPane.add(guionistButton, gridBagConstraints);
+    GuionistSelectionPane.add(writerButton, gridBagConstraints);
 
     jPanel1.add(GuionistSelectionPane);
 
@@ -311,9 +312,9 @@ public class MainFrame extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-  private void guionistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guionistButtonActionPerformed
-    controller.guionistButton();
-  }//GEN-LAST:event_guionistButtonActionPerformed
+  private void writerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_writerButtonActionPerformed
+    controller.scriptWriterButton();
+  }//GEN-LAST:event_writerButtonActionPerformed
 
   private void directorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_directorButtonActionPerformed
     controller.directorButton();
@@ -367,10 +368,6 @@ public class MainFrame extends javax.swing.JFrame {
   private javax.swing.JPanel directorSelectionPane;
   private javax.swing.JLabel directorThumbnail;
   private javax.swing.JLabel dolarLabel;
-  private javax.swing.JButton guionistButton;
-  private javax.swing.JLabel guionistName;
-  private javax.swing.JLabel guionistRating;
-  private javax.swing.JLabel guionistSalary;
   private javax.swing.JPanel heroSelectionPane;
   private javax.swing.JButton jButton2;
   private javax.swing.JButton jButton3;
@@ -383,6 +380,10 @@ public class MainFrame extends javax.swing.JFrame {
   private javax.swing.JLabel moneyLabel;
   private javax.swing.JSplitPane tab1Pane;
   private javax.swing.JToolBar toolBar;
+  private javax.swing.JButton writerButton;
+  private javax.swing.JLabel writerName;
+  private javax.swing.JLabel writerRating;
+  private javax.swing.JLabel writerSalary;
   private javax.swing.JLabel writerThumbnail;
   // End of variables declaration//GEN-END:variables
 
@@ -406,13 +407,8 @@ public class MainFrame extends javax.swing.JFrame {
     directorName.setText(d.getName());
     directorRating.setText(String.valueOf(d.getRating()));
     directorSalary.setText(String.valueOf(d.getSalary()));
-    setDirectorIcon(d.getThumbnail());
+    directorThumbnail.setIcon(new ImageIcon(GuiHelper.getPortrait(d.getThumbnail())));
     directorButton.setText("Despedir");
-  }
-
-  private void setDirectorIcon(String imagePath) {
-    ImageIcon icon = new ImageIcon(GuiHelper.getPortrait(imagePath));
-    directorThumbnail.setIcon(icon);
   }
 
   public void displayNoDirector() {
@@ -422,6 +418,23 @@ public class MainFrame extends javax.swing.JFrame {
     ImageIcon defaultImage = new ImageIcon(GuiHelper.getPortrait("DEFAULT_THUMBNAIL"));
     directorThumbnail.setIcon(defaultImage);
     directorButton.setText("Contratar");
+  }
+
+  public void displayNoScriptWriter() {
+    writerName.setText("-");
+    writerRating.setText("-");
+    writerSalary.setText("-");
+    ImageIcon defaultImage = new ImageIcon(GuiHelper.getPortrait("DEFAULT_THUMBNAIL"));
+    writerThumbnail.setIcon(defaultImage);
+    writerButton.setText("Contratar");
+  }
+
+  public void displayScriptWriter(ScriptWriter w) {
+    writerName.setText(w.getName());
+    writerRating.setText(String.valueOf(w.getRating()));
+    writerSalary.setText(String.valueOf(w.getSalary()));
+    writerThumbnail.setIcon(new ImageIcon(GuiHelper.getPortrait(w.getThumbnail())));
+    writerButton.setText("Despedir");
   }
 
 }

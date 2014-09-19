@@ -1,17 +1,17 @@
-package gameLogic;
+package gameLogic.staff;
 
 /**
  * Extended by: Director, Guionist
  * <p>
  * @author manutero
  */
-public abstract class AbstractPerson {
+public abstract class AbstractStaff {
 
   protected final String name;
   protected final int rating;
   protected final double salary;
 
-  protected AbstractPerson(String name, int rating, double salary) {
+  protected AbstractStaff(String name, int rating, double salary) {
     this.name = name;
     this.rating = validateRating(rating);
     this.salary = salary;
