@@ -15,9 +15,13 @@ public class MovieMaker {
   /* Project constants */
   public static String DIRECTOR_LIST_FILE_PATH
           = MovieMaker.class.getClassLoader().getResource("resources/directors.txt").getPath();
+
   public static String WRITER_LIST_FILE_PATH
           = MovieMaker.class.getClassLoader().getResource("resources/writers.txt").getPath();
-  public static String PORTRAITS_FOLDER_PATH = "resources/portraits/";
+
+  public static String PORTRAITS_FOLDER = "portraits/";
+
+  public static String THUMBNAILS_FOLDER = "thumbnails/";
 
 
   /**

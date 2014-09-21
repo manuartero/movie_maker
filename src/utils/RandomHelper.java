@@ -28,18 +28,19 @@ public final class RandomHelper {
    * The elements selected for the resulting list are got by a pseudo-random number and cannot
    * be repeted elements unless are duplicated in the original collection
    * <p>
+   * @param <T>
    * @param list
    * @param q size of the response list
    * @return list of q elements that were originaly in the list
    */
-  public static List selectQItemsFromList(final List list, int q) {
-    List response = new LinkedList<>();
-    List parameterCopy = new LinkedList<>(list);
+  public static <T> List<T> selectQItemsFromList(final List<T> list, int q) {
+    List<T> response = new LinkedList<>();
+    List<T> parameterCopy = new LinkedList<>(list);
 
     while (response.size() < q && parameterCopy.size() > 0) {
       int randomIndex = RandomHelper.randomInt(0, parameterCopy.size() - 1);
       Object selectedItem = parameterCopy.remove(randomIndex);
-      response.add(selectedItem);
+      response.add((T) selectedItem);
     }
 
     return response;

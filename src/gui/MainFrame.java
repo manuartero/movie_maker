@@ -12,10 +12,13 @@ import utils.GuiHelper;
  */
 public class MainFrame extends javax.swing.JFrame {
 
+  private ImageIcon defaultThumbnail;
+
   /**
    * Creates new form MainFrame
    */
   public MainFrame() {
+    defaultThumbnail = new ImageIcon(GuiHelper.getThumbnail("default_thumbnail"));
     initComponents();
   }
 
@@ -23,9 +26,8 @@ public class MainFrame extends javax.swing.JFrame {
   public void launch() {
     dateLabel.setText(gameLogic.GameConstans.STARTING_DATE);
     moneyLabel.setText(String.valueOf(gameLogic.GameConstans.STARTING_MONEY));
-    ImageIcon defaultImage = new ImageIcon(GuiHelper.getPortrait("DEFAULT_THUMBNAIL"));
-    directorThumbnail.setIcon(defaultImage);
-    writerThumbnail.setIcon(defaultImage);
+    directorThumbnail.setIcon(defaultThumbnail);
+    writerThumbnail.setIcon(defaultThumbnail);
 
     setVisible(true);
   }
@@ -155,7 +157,7 @@ public class MainFrame extends javax.swing.JFrame {
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 1;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
     directorSelectionPane.add(fixLabel2, gridBagConstraints);
 
     directorRating.setText("-");
@@ -180,13 +182,14 @@ public class MainFrame extends javax.swing.JFrame {
     directorSelectionPane.add(directorSalary, gridBagConstraints);
 
     directorThumbnail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    directorThumbnail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/portraits/DEFAULT_THUMBNAIL.png"))); // NOI18N
+    directorThumbnail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/thumbnails/default_thumbnail.png"))); // NOI18N
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridwidth = 3;
-    gridBagConstraints.gridheight = 6;
+    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.gridheight = 4;
     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+    gridBagConstraints.insets = new java.awt.Insets(1, 17, 1, 17);
     directorSelectionPane.add(directorThumbnail, gridBagConstraints);
 
     directorButton.setText("Contratar");
@@ -196,11 +199,8 @@ public class MainFrame extends javax.swing.JFrame {
       }
     });
     gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 5;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.insets = new java.awt.Insets(3, 61, 11, 2);
+    gridBagConstraints.gridx = 1;
+    gridBagConstraints.gridy = 3;
     directorSelectionPane.add(directorButton, gridBagConstraints);
 
     jPanel1.add(directorSelectionPane);
@@ -250,13 +250,14 @@ public class MainFrame extends javax.swing.JFrame {
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
     GuionistSelectionPane.add(writerSalary, gridBagConstraints);
 
-    writerThumbnail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/portraits/DEFAULT_THUMBNAIL.png"))); // NOI18N
+    writerThumbnail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/thumbnails/default_thumbnail.png"))); // NOI18N
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridwidth = 3;
+    gridBagConstraints.gridwidth = 2;
     gridBagConstraints.gridheight = 4;
     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+    gridBagConstraints.insets = new java.awt.Insets(1, 17, 1, 17);
     GuionistSelectionPane.add(writerThumbnail, gridBagConstraints);
 
     writerButton.setText("Contratar");
@@ -266,11 +267,9 @@ public class MainFrame extends javax.swing.JFrame {
       }
     });
     gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridx = 1;
     gridBagConstraints.gridy = 3;
-    gridBagConstraints.gridwidth = 2;
     gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.insets = new java.awt.Insets(3, 61, 11, 2);
     GuionistSelectionPane.add(writerButton, gridBagConstraints);
 
     jPanel1.add(GuionistSelectionPane);
@@ -407,7 +406,7 @@ public class MainFrame extends javax.swing.JFrame {
     directorName.setText(d.getName());
     directorRating.setText(String.valueOf(d.getRating()));
     directorSalary.setText(String.valueOf(d.getSalary()));
-    directorThumbnail.setIcon(new ImageIcon(GuiHelper.getPortrait(d.getThumbnail())));
+    directorThumbnail.setIcon(new ImageIcon(GuiHelper.getThumbnail(d.getThumbnail())));
     directorButton.setText("Despedir");
   }
 
@@ -415,8 +414,7 @@ public class MainFrame extends javax.swing.JFrame {
     directorName.setText("-");
     directorRating.setText("-");
     directorSalary.setText("-");
-    ImageIcon defaultImage = new ImageIcon(GuiHelper.getPortrait("DEFAULT_THUMBNAIL"));
-    directorThumbnail.setIcon(defaultImage);
+    directorThumbnail.setIcon(defaultThumbnail);
     directorButton.setText("Contratar");
   }
 
@@ -424,8 +422,7 @@ public class MainFrame extends javax.swing.JFrame {
     writerName.setText("-");
     writerRating.setText("-");
     writerSalary.setText("-");
-    ImageIcon defaultImage = new ImageIcon(GuiHelper.getPortrait("DEFAULT_THUMBNAIL"));
-    writerThumbnail.setIcon(defaultImage);
+    writerThumbnail.setIcon(defaultThumbnail);
     writerButton.setText("Contratar");
   }
 
@@ -433,7 +430,7 @@ public class MainFrame extends javax.swing.JFrame {
     writerName.setText(w.getName());
     writerRating.setText(String.valueOf(w.getRating()));
     writerSalary.setText(String.valueOf(w.getSalary()));
-    writerThumbnail.setIcon(new ImageIcon(GuiHelper.getPortrait(w.getThumbnail())));
+    writerThumbnail.setIcon(new ImageIcon(GuiHelper.getThumbnail(w.getThumbnail())));
     writerButton.setText("Despedir");
   }
 

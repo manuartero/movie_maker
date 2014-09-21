@@ -34,7 +34,7 @@ public class GuiHelper {
     Image response = null;
     try {
       response = ImageIO.read(movieMaker.MovieMaker.class.getClassLoader().getResource(imagePath));
-    } catch (IOException ex) {
+    } catch (IOException | IllegalArgumentException ex) {
       Logger.getLogger(GuiHelper.class.getName()).log(Level.SEVERE, null, ex);
     }
     return response;
@@ -45,7 +45,12 @@ public class GuiHelper {
    * @return
    */
   public static Image getPortrait(String imageName) {
-    String imagePath = movieMaker.MovieMaker.PORTRAITS_FOLDER_PATH +imageName + ".png";
+    String imagePath = movieMaker.MovieMaker.PORTRAITS_FOLDER + imageName + ".png";
+    return createImage(imagePath);
+  }
+
+  public static Image getThumbnail(String imageName) {
+    String imagePath = movieMaker.MovieMaker.THUMBNAILS_FOLDER + imageName + ".png";
     return createImage(imagePath);
   }
 
