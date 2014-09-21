@@ -6,35 +6,37 @@ import utils.RandomHelper;
  *
  * @author manutero
  */
-public class Director extends AbstractStaff {
-
-  private final String thumbnail;
-  private static int lastThumbnailInUse = 0;
+public class Director extends StaffMember {
 
   /**
    * Factory Pattern
    */
-  private Director(String name, int rating, double salary, String thumbnail) {
-    super(name, rating, salary);
-    this.thumbnail = thumbnail;
+  private Director(String name) {
+    super(name);
   }
 
   // TODO: move constants ints to gameLogic.GameConstants
-  public static Director createNewDirector(String name) {
-    int rating = RandomHelper.randomInt(0, 99);
-    double salary = rating * (100 + RandomHelper.randomInt(10, 20));
-    String thumbnail = generateThumbnailPath();
-    Director response = new Director(name, rating, salary, thumbnail);
+  public static Director createNewDirector(String name) { 
+    Director response = new Director(name);
+    response.setOverall();
+    response.setSalary();
     return response;
   }
 
-  private static String generateThumbnailPath() {
-    lastThumbnailInUse++;
-    return "thumb-" + String.valueOf(lastThumbnailInUse);
+  @Override
+  protected void setOverall() {
+    int overallRating = RandomHelper.randomInt(0, 99);
+    this.overall = overallRating;
   }
 
-  public String getThumbnail() {
-    return thumbnail;
+  @Override
+  // TODO: move constants ints to gameLogic.GameConstants
+  protected void setSalary() {
+    if (overall == 0) {
+      setOverall();
+    }
+    double income = overall * (100 + RandomHelper.randomInt(10, 20));
+    this.salary = income;
   }
 
 }

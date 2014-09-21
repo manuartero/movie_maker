@@ -1,7 +1,7 @@
 package gui;
 
 import controller.Controller;
-import gameLogic.staff.AbstractStaff;
+import gameLogic.staff.Employee;
 import java.util.List;
 import javax.swing.DefaultListModel;
 
@@ -10,7 +10,7 @@ import javax.swing.DefaultListModel;
  * @author manutero
  * @param <T>
  */
-public class PopUp<T extends AbstractStaff> extends javax.swing.JFrame {
+public class PopUp<T extends Employee> extends javax.swing.JFrame {
 
   private Controller controller;
   private final DefaultListModel avaibleChoices;
@@ -23,7 +23,7 @@ public class PopUp<T extends AbstractStaff> extends javax.swing.JFrame {
    * @param <T>
    * @param candidates
    */
-  public <T extends AbstractStaff> PopUp(final List<T> candidates) {
+  public <T extends Employee> PopUp(final List<T> candidates) {
     this.avaibleChoices = createListModel(candidates);
     initComponents();
   }
@@ -94,7 +94,7 @@ public class PopUp<T extends AbstractStaff> extends javax.swing.JFrame {
     this.controller = controller;
   }
 
-  private <T extends AbstractStaff> DefaultListModel createListModel(final List<T> list) {
+  private <T extends Employee> DefaultListModel createListModel(final List<T> list) {
     DefaultListModel response = new DefaultListModel();
     int i = 0;
     for (T element : list) {

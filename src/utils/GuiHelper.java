@@ -17,9 +17,7 @@ public class GuiHelper {
    * @return
    */
   public static TableModel toTableModel(Map<?, ?> map) {
-    DefaultTableModel model = new DefaultTableModel(
-            new Object[]{"Concepto", "Valor"}, 0
-    );
+    DefaultTableModel model = new DefaultTableModel(new Object[]{"Concepto", "Valor"}, 0);
     for (Map.Entry<?, ?> entry : map.entrySet()) {
       model.addRow(new Object[]{entry.getKey(), entry.getValue()});
     }

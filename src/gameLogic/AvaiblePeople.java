@@ -2,6 +2,7 @@ package gameLogic;
 
 import gameLogic.staff.Director;
 import gameLogic.staff.ScriptWriter;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import utils.FileHelper;
@@ -18,7 +19,7 @@ public class AvaiblePeople {
 
   public static List<Director> directorList() {
     if (directorList == null) {
-      directorList = new LinkedList<>();
+      directorList = new ArrayList<>();
       List<String> allNames = FileHelper.readTextFile(movieMaker.MovieMaker.DIRECTOR_LIST_FILE_PATH);
       List<String> selectedNames = RandomHelper.selectQItemsFromList(allNames, 100);
       for (String name : selectedNames) {

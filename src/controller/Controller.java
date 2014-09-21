@@ -2,7 +2,7 @@ package controller;
 
 import gameLogic.AvaiblePeople;
 import gameLogic.User;
-import gameLogic.staff.AbstractStaff;
+import gameLogic.staff.Employee;
 import gameLogic.staff.Director;
 import gameLogic.staff.ScriptWriter;
 import gui.InfoPopUp;
@@ -87,11 +87,13 @@ public class Controller {
       user.fireGuionist();
       gui.displayNoScriptWriter();
     } else {
-      launchHiringGUI(AvaiblePeople.scriptWriterList());
+      List<ScriptWriter> list = AvaiblePeople.scriptWriterList();
+      list = Employee.orderByName(list);
+      launchHiringGUI(list);
     }
   }
 
-  private <T extends AbstractStaff> void launchHiringGUI(List<T> choices) {
+  private <T extends Employee> void launchHiringGUI(List<T> choices) {
     PopUp hiringGui = new PopUp(choices);
     hiringGui.setController(this);
     hiringGui.launch();
@@ -100,7 +102,7 @@ public class Controller {
   /**
    * @deprecated launchHiringGUI(list, Director.class)
    */
-  private <T extends AbstractStaff> void launchHiringGUI(List<T> choices, Class<T> type) {
+  private <T extends Employee> void launchHiringGUI(List<T> choices, Class<T> type) {
     PopUp hiringGui = new PopUp(choices);
     hiringGui.setController(this);
     hiringGui.launch();
@@ -112,7 +114,7 @@ public class Controller {
    * @param <T>
    * @param selectedCandidate
    */
-  public <T extends AbstractStaff> void chosenStaff(T selectedCandidate) {
+  public <T extends Employee> void chosenStaff(T selectedCandidate) {
     if (selectedCandidate instanceof Director) {
       Director director = (Director) selectedCandidate;
       user.hireDirector(director);

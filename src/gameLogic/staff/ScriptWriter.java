@@ -1,51 +1,67 @@
 package gameLogic.staff;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import utils.RandomHelper;
 
 /**
- * Inherited: name (String), salary (double) & rating (int)
+ * Each ScriptWriter has 3 relevant ratings: artisticRating, technicalRating, imaginationRating.
  * <p>
  * One ScriptWriter has wrote 0+ scripts along his life.
- * Can be working on (just) 1 script at the same time
+ * Can be working on (just) 1 script at the same time.
  * <p>
+ * Inherited: name (String), salary (double) & overall (int).
+ *
  * @author manutero
  */
-public class ScriptWriter extends AbstractStaff {
+public class ScriptWriter extends StaffMember {
 
-  private final String thumbnail;
-  private static int lastThumbnailInUse = 100;
+  private int artisticRating;
+  private int technicalRating;
+  private int imaginationRating;
+
   private final List<Script> scripts;
   private Script actualScript;
 
   /**
    * Factory Pattern
    */
-  private ScriptWriter(String name, int rating, double salary, String thumbnail) {
-    super(name, rating, salary);
-    this.thumbnail = thumbnail;
-    this.scripts = new LinkedList<>();
+  private ScriptWriter(String name, int artistical, int technical, int imagination) {
+    super(name);
+    this.artisticRating = artistical;
+    this.technicalRating = technical;
+    this.imaginationRating = imagination;
+    this.scripts = new ArrayList<>();
     this.actualScript = null;
   }
 
   // TODO: move constants ints to gameLogic.GameConstants
   public static ScriptWriter createNewScriptWriter(String name) {
-    int rating = RandomHelper.randomInt(0, 99);
-    double salary = rating * (100 + RandomHelper.randomInt(10, 20));
-    String thumbnail = generateThumbnailPath();
-    ScriptWriter response = new ScriptWriter(name, rating, salary, thumbnail);
+    int artistical = RandomHelper.randomInt(1, 99);
+    int technical = RandomHelper.randomInt(1, 99);
+    int imagination = RandomHelper.randomInt(1, 99);
+    ScriptWriter response = new ScriptWriter(name, artistical, technical, imagination);
+    response.setOverall();
+    response.setSalary();
     return response;
   }
 
-  private static String generateThumbnailPath() {
-    lastThumbnailInUse++;
-    return "thumb-" + String.valueOf(lastThumbnailInUse);
+  @Override
+  protected void setOverall() {
+    int overallRating = (artisticRating + technicalRating + imaginationRating) / 3;
+    this.overall = validateRating(overallRating);
   }
 
-  public String getThumbnail() {
-    return thumbnail;
+  @Override
+  // TODO: move constants ints to gameLogic.GameConstants
+  protected void setSalary() {
+    if (overall == 0) {
+      setOverall();
+    }
+    double income = overall * (100 + RandomHelper.randomInt(10, 20));
+    this.salary = income;
   }
 
   public boolean isWorking() {
@@ -57,10 +73,10 @@ public class ScriptWriter extends AbstractStaff {
     scripts.add(actualScript);
   }
 
-  // TODO move numbers to game constans
+  // TODO: move constants ints to gameLogic.GameConstants
   public boolean write() {
-    actualScript.rating += this.rating * RandomHelper.randomInt(1, 10) / 1000;
-    actualScript.progress += this.rating / 10 * RandomHelper.randomInt(1, 4);
+    actualScript.rating += this.overall * RandomHelper.randomInt(1, 10) / 1000;
+    actualScript.progress += this.overall / 10 * RandomHelper.randomInt(1, 4);
     if (consideredDone(actualScript)) {
       actualScript.isFinished = true;
       return true;
@@ -82,12 +98,12 @@ public class ScriptWriter extends AbstractStaff {
 
   private List<Script> allScriptsByRating() {
     List<Script> allScripts = new LinkedList<>(scripts);
-    return orderByRating(allScripts);
+    return orderScriptsByRating(allScripts);
   }
 
   private List<Script> finishedScriptsByRating() {
     List<Script> finishedScripts = getFinishedScripts();
-    return orderByRating(finishedScripts);
+    return orderScriptsByRating(finishedScripts);
   }
 
   private List<Script> getFinishedScripts() {
@@ -100,16 +116,10 @@ public class ScriptWriter extends AbstractStaff {
     return response;
   }
 
-  private List<Script> orderByRating(List<Script> list) {
+  private List<Script> orderScriptsByRating(List<Script> list) {
     List<Script> response = new LinkedList<>(list);
     Collections.sort(response, (Script s1, Script s2) -> {
-      if (s1.rating > s2.rating) {
-        return 1;
-      }
-      if (s1.rating < s2.rating) {
-        return -1;
-      }
-      return 0;
+      return s1.rating - s2.rating;
     });
     return response;
   }
@@ -117,6 +127,18 @@ public class ScriptWriter extends AbstractStaff {
   // TODO all the scriptsWriter must not has the same eval function
   private boolean consideredDone(Script s) {
     return s.progress >= 100;
+  }
+
+  public int getArtisticRating() {
+    return artisticRating;
+  }
+
+  public int getTechnicalRating() {
+    return technicalRating;
+  }
+
+  public int getImaginationRating() {
+    return imaginationRating;
   }
 
 }
