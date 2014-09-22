@@ -26,6 +26,8 @@ public class MovieMaker {
 
   public static String THUMBNAILS_FOLDER = "thumbnails/";
 
+  public static String ICONS_FOLDER = "icons/";
+
 
   /**
    * Lunch the app.
