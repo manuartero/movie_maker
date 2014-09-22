@@ -1,7 +1,8 @@
 package gui;
 
 import controller.Controller;
-import gameLogic.staff.Employee;
+import gameLogic.staff.Director;
+import gameLogic.staff.interfaces.Employee;
 import java.util.List;
 import javax.swing.DefaultListModel;
 
@@ -13,19 +14,25 @@ import javax.swing.DefaultListModel;
 public class PopUp<T extends Employee> extends javax.swing.JFrame {
 
   private Controller controller;
-  private final DefaultListModel avaibleChoices;
+  private DefaultListModel avaibleChoices;
+  private List<T> list;
+  private boolean ascendingOrder;
 
   /**
    * Creates new form PopUp for hiring staff.
    * In order to make it versatile, it's possible to create a new popUp containing
    * directors, scriptWriters, etc. 
    * <p>
-   * @param <T>
+           * FIXME E instead of T
+           * <p>
+           * @param <T>
    * @param candidates
    */
-  public <T extends Employee> PopUp(final List<T> candidates) {
+  public <E extends Employee> PopUp(final List<T> candidates) {
+    this.list = candidates;
     this.avaibleChoices = createListModel(candidates);
     initComponents();
+    ascendingOrder = false;
   }
 
   /**
@@ -37,29 +44,53 @@ public class PopUp<T extends Employee> extends javax.swing.JFrame {
   @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
+    java.awt.GridBagConstraints gridBagConstraints;
 
     jSplitPane2 = new javax.swing.JSplitPane();
     jScrollPane1 = new javax.swing.JScrollPane();
     selectionList = new javax.swing.JList();
+    jPanel1 = new javax.swing.JPanel();
+    sortNameButton = new javax.swing.JButton();
+    sortRatingButton = new javax.swing.JButton();
     selectionButton = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     setTitle("Selección del Staff");
     setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-    setPreferredSize(new java.awt.Dimension(264, 350));
-    setResizable(false);
-    setSize(new java.awt.Dimension(200, 350));
     setType(java.awt.Window.Type.POPUP);
 
-    jSplitPane2.setDividerLocation(290);
-    jSplitPane2.setDividerSize(3);
     jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
     selectionList.setModel(this.avaibleChoices);
     selectionList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+    selectionList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+      public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        valueChangedListener(evt);
+      }
+    });
     jScrollPane1.setViewportView(selectionList);
 
     jSplitPane2.setTopComponent(jScrollPane1);
+
+    jPanel1.setLayout(new java.awt.GridBagLayout());
+
+    sortNameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sort_name.png"))); // NOI18N
+    sortNameButton.setToolTipText("Ordernar por nombre");
+    sortNameButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        sortNameButtonActionPerformed(evt);
+      }
+    });
+    jPanel1.add(sortNameButton, new java.awt.GridBagConstraints());
+
+    sortRatingButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sort_rating.png"))); // NOI18N
+    sortRatingButton.setToolTipText("Ordernar por valoración general");
+    sortRatingButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        sortRatingButtonActionPerformed(evt);
+      }
+    });
+    jPanel1.add(sortRatingButton, new java.awt.GridBagConstraints());
 
     selectionButton.setText("Seleccionar");
     selectionButton.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +98,13 @@ public class PopUp<T extends Employee> extends javax.swing.JFrame {
         selectionButtonActionPerformed(evt);
       }
     });
-    jSplitPane2.setBottomComponent(selectionButton);
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 1;
+    gridBagConstraints.gridwidth = 2;
+    jPanel1.add(selectionButton, gridBagConstraints);
+
+    jSplitPane2.setBottomComponent(jPanel1);
 
     getContentPane().add(jSplitPane2, java.awt.BorderLayout.CENTER);
 
@@ -80,12 +117,47 @@ public class PopUp<T extends Employee> extends javax.swing.JFrame {
     this.dispose();
   }//GEN-LAST:event_selectionButtonActionPerformed
 
+  private void sortNameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortNameButtonActionPerformed
+    if (ascendingOrder) {
+      this.list = gameLogic.staff.interfaces.Employee.orderByName(list);
+      ascendingOrder = !ascendingOrder;
+    } else {
+      this.list = gameLogic.staff.interfaces.Employee.orderDescByName(list);
+      ascendingOrder = !ascendingOrder;
+    }
+    this.avaibleChoices = createListModel(list);
+    selectionList.setModel(avaibleChoices);
+  }//GEN-LAST:event_sortNameButtonActionPerformed
+
+  private void sortRatingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortRatingButtonActionPerformed
+    if (ascendingOrder) {
+      this.list = gameLogic.staff.interfaces.Employee.orderByRating(list);
+      ascendingOrder = !ascendingOrder;
+    } else {
+      this.list = gameLogic.staff.interfaces.Employee.orderDescByRating(list);
+      ascendingOrder = !ascendingOrder;
+    }
+    this.avaibleChoices = createListModel(list);
+    selectionList.setModel(avaibleChoices);
+  }//GEN-LAST:event_sortRatingButtonActionPerformed
+
+  private void valueChangedListener(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_valueChangedListener
+    if (!evt.getValueIsAdjusting()){
+      Object selected = avaibleChoices.get(selectionList.getSelectedIndex());
+      DirectorInfo popUp = new DirectorInfo((Director) selected);
+      popUp.setVisible(true);
+    }
+  }//GEN-LAST:event_valueChangedListener
+
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JPanel jPanel1;
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JSplitPane jSplitPane2;
   private javax.swing.JButton selectionButton;
   private javax.swing.JList selectionList;
+  private javax.swing.JButton sortNameButton;
+  private javax.swing.JButton sortRatingButton;
   // End of variables declaration//GEN-END:variables
 
   // --------------------
