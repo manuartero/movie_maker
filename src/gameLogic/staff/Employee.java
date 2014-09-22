@@ -29,6 +29,7 @@ public abstract class Employee {
 
   /**
    * Force to implement the salary evaluation function.
+   * Call setSalary after setOverall
    */
   protected abstract void setSalary();
 

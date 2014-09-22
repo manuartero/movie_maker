@@ -2,8 +2,8 @@ package controller;
 
 import gameLogic.AvaiblePeople;
 import gameLogic.User;
-import gameLogic.staff.Employee;
 import gameLogic.staff.Director;
+import gameLogic.staff.Employee;
 import gameLogic.staff.ScriptWriter;
 import gui.InfoPopUp;
 import gui.MainFrame;
@@ -40,8 +40,9 @@ public class Controller {
   }
 
   /**
-   * timeSimulator: new month => pay day and display new month on gui
-   * <p>
+   * timeSimulator: new month.
+   * <ul> <li>pay day</li> <li>display new month on gui</li> </ul>
+   * 
    * @param calendar actual date
    */
   public void nextMonth(Calendar calendar) {
@@ -52,7 +53,7 @@ public class Controller {
   }
 
   /**
-   * timeSimulator: end of the game
+   * timeSimulator: end of the game.
    */
   public void end() {
     gui.dispose();
@@ -60,7 +61,7 @@ public class Controller {
   }
 
   /**
-   * timeSimulator: quick progress
+   * timeSimulator: quick progress.
    */
   public void makeProgress() {
     user.payDay();
@@ -68,7 +69,8 @@ public class Controller {
   }
 
   /**
-   * gui (MainFrame): director button pressed => start hiring process or fire director
+   * gui (MainFrame): director button pressed.
+   * <ul> <li>start hiring process or fire director</li> </ul>
    */
   public void directorButton() {
     if (user.hasHiredDirector()) {
@@ -80,7 +82,8 @@ public class Controller {
   }
 
   /**
-   * gui (MainFrame) : scriptWriter button pressed => start hiring process or fire writer
+   * gui (MainFrame) : scriptWriter button pressed.
+   * <ul> <li>start hiring process or fire writer</li> </ul>
    */
   public void scriptWriterButton() {
     if (user.hasHiredScriptWriter()) {
@@ -109,8 +112,9 @@ public class Controller {
   }
 
   /**
-   * selection PopUp: this person has been chosen => hire new staff
-   * <p>
+   * selection PopUp: this person has been chosen.
+   * <ul> <li>hire new staff</li> </ul>
+   * 
    * @param <T>
    * @param selectedCandidate
    */
@@ -127,7 +131,8 @@ public class Controller {
   }
 
   /**
-   * gui: mouse over movey label => display user expenditure details
+   * gui: mouse over movey label.
+   * <ul> <li>display user expenditure details</li> </ul>
    */
   public void moneyInfo() {
     if (!currentlyShowingInfo) {

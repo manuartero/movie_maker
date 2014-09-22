@@ -12,7 +12,7 @@ import utils.RandomHelper;
  * One ScriptWriter has wrote 0+ scripts along his life.
  * Can be working on (just) 1 script at the same time.
  * <p>
- * Inherited: name (String), salary (double) & overall (int).
+ * Inherited: name (String), salary (double) and overall (int).
  *
  * @author manutero
  */

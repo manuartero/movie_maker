@@ -19,6 +19,9 @@ public class MovieMaker {
   public static String WRITER_LIST_FILE_PATH
           = MovieMaker.class.getClassLoader().getResource("resources/writers.txt").getPath();
 
+  public static String ACTOR_LIST_FILE_PATH
+          = MovieMaker.class.getClassLoader().getResource("resources/actors.txt").getPath();
+
   public static String PORTRAITS_FOLDER = "portraits/";
 
   public static String THUMBNAILS_FOLDER = "thumbnails/";

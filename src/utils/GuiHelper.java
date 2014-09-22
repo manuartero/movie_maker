@@ -12,7 +12,7 @@ import javax.swing.table.TableModel;
 public class GuiHelper {
 
   /**
-   * @see Stackoverflow 2257309
+   * Stackoverflow 2257309
    * @param map
    * @return
    */
