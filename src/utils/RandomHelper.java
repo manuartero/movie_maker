@@ -6,21 +6,35 @@ import java.util.Random;
 
 public final class RandomHelper {
 
+  private static final Random r = new Random();
+
   /**
    * Returns a pseudo-random number between min and max, inclusive.
    * The difference between min and max can be at most
    * <code>Integer.MAX_VALUE - 1</code>.
-   *
+   * <p>
+   * stackoverflow.363681
+   * 
    * @param min Minimum value
    * @param max Maximum value. Must be greater than min.
    * @return Integer between min and max, inclusive.
    * @see java.util.Random#nextInt(int)
-   * @see stackoverflow 363681
    */
   public static int randomInt(int min, int max) {
-    Random rand = new Random();
-    int randomNum = rand.nextInt((max - min) + 1) + min;
+    int randomNum = r.nextInt((max - min) + 1) + min;
     return randomNum;
+  }
+
+  /**
+   * @param prob € [0,1]
+   * @return
+   */
+  public static boolean trueWithProbOf(double prob) {
+    if (prob < 0 || prob > 1) {
+      return false;
+    }
+    double randomDouble = r.nextDouble();
+    return randomDouble < prob;
   }
 
   /**
