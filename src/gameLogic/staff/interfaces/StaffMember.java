@@ -1,16 +1,6 @@
-package gameLogic.staff;
+package gameLogic.staff.interfaces;
 
-/**
- * Director, ScriptWriter, ProductionDirector, PostProductionDirector, Hero.
- * <p>
- * @author manutero
- */
 public abstract class StaffMember extends Employee {
-
-  protected final String thumbnail;
-  protected static int lastThumbnailInUse = 100;
-  protected final String portrait;
-  protected static int lastPortraitInUse = 100;
 
   protected StaffMember(String name) {
     super(name);
@@ -18,22 +8,38 @@ public abstract class StaffMember extends Employee {
     portrait = generatePortraitField();
   }
 
+  // <editor-fold desc="thumbnail">
+  //
+  protected final String thumbnail;
+
+  protected static int lastThumbnailInUse = 100;
+  
   private String generateThumbnailField() {
     lastThumbnailInUse++;
     return "thumb-" + String.valueOf(lastThumbnailInUse);
   }
+
+  public String getThumbnail() {
+    return thumbnail;
+  }
+  //
+  // </editor-fold>
+
+  // <editor-fold desc="portrait">
+  //
+  protected final String portrait;
+
+  protected static int lastPortraitInUse = 100;
 
   private String generatePortraitField() {
     lastPortraitInUse++;
     return "portrait-" + String.valueOf(lastPortraitInUse);
   }
 
-  public String getThumbnail() {
-    return thumbnail;
-  }
-
   public String getPortrait() {
     return portrait;
   }
+  //
+  // </editor-fold>
 
 }

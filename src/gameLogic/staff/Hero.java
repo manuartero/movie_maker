@@ -1,119 +1,129 @@
 package gameLogic.staff;
 
+import gameLogic.staff.interfaces.Aged;
+import gameLogic.staff.interfaces.Artist;
+import gameLogic.staff.interfaces.Famous;
+import gameLogic.staff.interfaces.StaffMember;
 import utils.RandomHelper;
 
 /**
  * 3 relevant skills: fama, age, and generalSkill.
- * <p>
- * <h3>How to change the main skills</h3>
- * Each call to birthday <code>birthday() : void</code> increments the <em>age</em> and
- * is possible that the <em>generalSkill</em> changes.
- * The <em>fama</em> is possible to increase or decrease with the methods
- * <code>improveFama(int) : void</code> and <code>decreaseFama(int) : void</code>
- * <p>
- * <h3> oversRating evaluation </h3>
- * <em>age</em> + <em>generalSkill</em> / 2
- * <p>
- * @author manutero
  */
-public class Hero extends StaffMember {
+public class Hero extends StaffMember implements Artist, Famous, Aged {
 
-  private int fama;
-  private int age; 
-  private int generalSkill;
-
-  private Hero(String name, int age) {
+  // <editor-fold desc="Factory">
+  //
+  private Hero(String name, int artistic, int fama, int age) {
     super(name);
+    this.artisticRating = artistic;
+    this.famaRating = fama;
     this.age = age;
   }
 
-  /**
-   * Factory pattern
-   * <p>
-   * @param name
-   * @return
-   */
   public static Hero createNewHero(String name) {
-    int age = generateAge();
-    Hero response = new Hero(name, age);
+    int artistic = RandomHelper.randomRating();
+    int fama = RandomHelper.randomRating();
+    int age = RandomHelper.gaussDistribution(17, 68);
+    Hero response = new Hero(name, artistic, fama, age);
     response.setOverall();
     response.setSalary();
     return response;
   }
+  //
+  // </editor-fold>
 
-  // TODO: make a gauss probability distribution
-  private static int generateAge() {
-    return RandomHelper.randomInt(17, 60);
-  }
-
-  /**
-   * This actor is older, probably better and wants to improve his salary.
-   */
-  public void birthday() {
-    age++;
-    improveGeneralSkill();
-    improveSalary();
-    recalculateOverall();
-  }
-
-  // TODO: move constants
-  private void improveGeneralSkill() {
-    boolean mustImproveHisSkills = RandomHelper.trueWithProbOf(0.65);
-    if (mustImproveHisSkills) {
-      generalSkill += RandomHelper.randomInt(1, 4);
-    } else {
-      generalSkill -= RandomHelper.randomInt(1, 3);
-    }
-  }
-
-  // TODO improve this
-  private void improveSalary() {
-    salary += 500;
-  }
-
-  public void improveFama(int improve) {
-    int newFama = fama += improve;
-    this.fama = validateRating(newFama);
-    recalculateOverall();
-  }
-
-  public void decreaseFama(int decrease) {
-    int newFama = fama -= decrease;
-    this.fama = validateRating(newFama);
-    recalculateOverall();
-  }
-
-  private void recalculateOverall() {
-    this.overall = (int) ((this.fama + this.generalSkill) / 2);
-  }
-
+  // <editor-fold desc="Employee">
+  //
   @Override
   protected void setOverall() {
-    this.generalSkill = RandomHelper.randomInt(0, 99);
-    this.fama = RandomHelper.randomInt(0, 99);
-    recalculateOverall();
+    this.overall = (int) ((this.famaRating + this.artisticRating) / 2);
   }
 
   @Override
-  // TODO: move constants ints to gameLogic.GameConstants
   protected void setSalary() {
     if (overall == 0) {
       setOverall();
     }
+    // TODO: move constants ints to gameLogic.GameConstants
     double income = overall * (100 + RandomHelper.randomInt(10, 20));
     this.salary = income;
   }
 
-  public int getFama() {
-    return fama;
+  @Override
+  protected void incrementSalary(int increment) {
+    // TODO improve this
+    this.salary += increment;
+  }
+  //
+  // </editor-fold>
+
+  // <editor-fold desc="Artist">
+  //
+  private int artisticRating;
+
+  @Override
+  public int getArtisticRating() {
+    return artisticRating;
   }
 
+  @Override
+  public void incrementArtistic(int increment) {
+    int newArtistic = artisticRating + increment;
+    this.artisticRating = validateRating(newArtistic);
+    setOverall();
+    incrementSalary(increment);
+  }
+
+  @Override
+  public void decrementArtistic(int decrement) {
+    int newArtistic = artisticRating - decrement;
+    this.artisticRating = validateRating(newArtistic);
+    setOverall();
+  }
+  //
+  // </editor-fold>
+
+  // <editor-fold desc="Aged">
+  //
+  private int age;
+
+  @Override
+  public void birthday() {
+    age++;
+    incrementSalary(500); // TODO
+    setOverall();
+  }
+
+  @Override
   public int getAge() {
     return age;
   }
+  //
+  // </editor-fold>
 
-  public int getGeneralSkill() {
-    return generalSkill;
+  // <editor-fold desc="Famous">
+  private int famaRating;
+
+  @Override
+  public int getFamaRating() {
+    return famaRating;
   }
+
+  @Override
+  public void incrementFama(int increment) {
+    int newFama = famaRating += increment;
+    this.famaRating = validateRating(newFama);
+    incrementSalary(increment);
+    setOverall();
+  }
+
+  @Override
+  public void decreaseFama(int decrease) {
+    int newFama = famaRating -= decrease;
+    this.famaRating = validateRating(newFama);
+    setOverall();
+  }
+  //
+  // </editor-fold>
 
 }

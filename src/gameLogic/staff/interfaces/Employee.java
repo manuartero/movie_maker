@@ -1,4 +1,4 @@
-package gameLogic.staff;
+package gameLogic.staff.interfaces;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,20 +7,37 @@ import java.util.List;
 /**
  * Every employee has a name, an overall rating, and a monthly income.
  * Direct known subclasses: StaffMember, StaffAssistant
- * <p>
- * @author manutero
  */
 public abstract class Employee {
-
-  protected final String name;
-  protected int overall;
-  protected double salary;
 
   protected Employee(String name) {
     this.name = name;
     overall = 0;
     salary = 0.0;
   }
+
+  // <editor-fold desc="attributes">
+  //
+  protected final String name;
+  protected int overall;
+  protected double salary;
+
+  public String getName() {
+    return name;
+  }
+
+  public int getOverall() {
+    return overall;
+  }
+
+  public double getSalary() {
+    return salary;
+  }
+  //
+  // </editor-fold>
+
+  // <editor-fold desc="abstract methods">
+  //
 
   /**
    * Force to implement the overall evaluation function.
@@ -34,37 +51,16 @@ public abstract class Employee {
   protected abstract void setSalary();
 
   /**
-   * Each rating would be in the range [1,99].
+   * Force to implement the salary upgrade.
    * <p>
-   * @param rating
-   * @return valid rating
+   * @param increment
    */
-  protected int validateRating(int rating) {
-    if (rating <= 0) {
-      return 1;
-    } else if (rating >= 100) {
-      return 99;
-    }
-    return rating;
-  }
+  protected abstract void incrementSalary(int increment);
+  //
+  // </editor-fold>
 
-  public String getName() {
-    return name;
-  }
-
-  public int getRating() {
-    return overall;
-  }
-
-  public double getSalary() {
-    return salary;
-  }
-
-  @Override
-  public String toString() {
-    return name + " (" + overall + ") - " + salary + "$/month";
-  }
-
+  // <editor-fold desc="sort collections">
+  //
   /**
    * @param <T>
    * @param list example, [roger(34), cath(17), peter(40)]
@@ -141,6 +137,28 @@ public abstract class Employee {
       return o1.name.compareTo(o2.name);
     });
     return response;
+  }
+  //
+  // </editor-fold>
+
+  /**
+   * Each rating would be in the range [1,99].
+   * <p>
+   * @param rating
+   * @return valid rating
+   */
+  protected int validateRating(int rating) {
+    if (rating <= 0) {
+      return 1;
+    } else if (rating >= 100) {
+      return 99;
+    }
+    return rating;
+  }
+
+  @Override
+  public String toString() {
+    return name + " (" + overall + ")";
   }
 
 }
