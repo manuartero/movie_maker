@@ -88,9 +88,6 @@ Tex Avery
 John G. Avildsen
 Dan Aykroyd
 Nabil Ayouch
-Top of page
-B[edit]
-Ba–Bh[edit]
 Hector Babenco
 Lloyd Bacon
 Clarence G. Badger
@@ -163,8 +160,6 @@ Bernardo Bertolucci
 Luc Besson
 Frank Beyer
 Bharathiraja
-Top of page
-Bi–Bz[edit]
 John Biddle
 Fabián Bielinsky
 Kathryn Bigelow
@@ -246,8 +241,6 @@ Robert Butler
 Jörg Buttgereit
 Edward Buzzell
 Bobby Razak
-Top of page
-C[edit]
 Christy Cabanne
 Michael Cacoyannis
 Israel Adrián Caetano
@@ -377,8 +370,6 @@ Sean S. Cunningham
 Richard Curtis
 Michael Curtiz
 Paul Czinner
-Top of page
-D[edit]
 Dimitris Kremastiotis
 Debarun Pal
 Joe D'Amato
@@ -475,8 +466,6 @@ Richard Dutcher
 Guru Dutt
 Julien Duvivier
 Allan Dwan
-Top of page
-E[edit]
 B. Reeves Eason
 Clint Eastwood
 Uli Edel
@@ -503,8 +492,6 @@ Marc Evans
 Valie Export
 Chris Eyre
 Richard Eyre
-Top of page
-F[edit]
 Peter Faiman
 James Fargo
 Asghar Farhadi
@@ -578,8 +565,6 @@ Lucio Fulci
 Sam Fuller
 Antoine Fuqua
 Sidney J. Furie
-Top of page
-G[edit]
 Béla Gaál
 Leonid Gaidai
 Alex Galvin
@@ -662,8 +647,6 @@ Manish Gupta
 Alice Guy-Blaché
 Yilmaz Güney
 Patricio Guzmán
-Top of page
-H[edit]
 Kamal Haasan
 Taylor Hackford
 Tala Hadid
@@ -771,8 +754,6 @@ Brian G. Hutton
 Willard Huyck
 Peter Hyams
 Nicholas Hytner
-Top of page
-I[edit]
 Kon Ichikawa
 Im Kwon-Taek
 Shôhei Imamura
@@ -788,8 +769,6 @@ Juzo Itami
 Aleksandr Ivanovsky
 Joris Ivens
 James Ivory
-Top of page
-J[edit]
 Jacques Jaccard
 Mick Jackson
 Peter Jackson
@@ -838,8 +817,6 @@ Louis Jouvet
 Mike Judge
 Rupert Julian
 Miranda July
-Top of page
-K[edit]
 Karel Kachyňa
 Jeremy Kagan
 Mauricio Kagel
@@ -927,8 +904,6 @@ Kiyoshi Kurosawa
 Emir Kusturica
 Stanley Kwan
 Ken Kwapis
-Top of page
-L[edit]
 John La Bouchardiere
 Nadine Labaki
 Neil LaBute
@@ -1015,9 +990,6 @@ Jennifer Lynch
 Liam Lynch
 Adrian Lyne
 Jonathan Lynn
-Top of page
-M[edit]
-Ma–Mc[edit]
 David MacDonald
 Kevin Macdonald
 Seth MacFarlane
@@ -1093,8 +1065,6 @@ Norman McLaren
 Norman Z. McLeod
 John McNaughton
 John McTiernan
-Top of page
-Md–Mz[edit]
 Shane Meadows
 Dariush Mehrjui
 Deepa Mehta
@@ -1160,8 +1130,6 @@ Ralph Murphy
 Ryan Murphy
 Floyd Mutrux
 Daniel Myrick
-Top of page
-N[edit]
 Amir Naderi
 Mira Nair
 Hideo Nakata
@@ -1206,8 +1174,6 @@ Wilfred Noy
 Phillip Noyce
 Elliott Nugent
 Bruno Nuytten
-Top of page
-O[edit]
 Chris O'Dea
 Kingsley Ogoro
 Izu Ojukwu
@@ -1228,8 +1194,6 @@ Horace Ové
 Frank Oz
 François Ozon
 Yasujiro Ozu
-Top of page
-P[edit]
 Georg Wilhelm Pabst
 P. Padmarajan
 Alan J. Pakula
@@ -1303,13 +1267,8 @@ Yakov Protazanov
 Alex Proyas
 Vsevolod Pudovkin
 Ivan Pyryev
-Top of page
-Q[edit]
 Brothers Quay
 Richard Quine
-Top of page
-R[edit]
-Ra–Re[edit]
 Peer Raben
 Michael Radford
 Bob Rafelson
@@ -1350,8 +1309,6 @@ Alain Resnais
 Carlos Reygadas
 Kevin Reynolds
 Lynn Reynolds
-Top of page
-Rf–Rz[edit]
 John Rich
 Tony Richardson
 Hans Richter
@@ -1413,9 +1370,6 @@ Stefan Ruzowitzky
 Eldar Ryazanov
 Zbigniew Rybczyński
 Mark Rydell
-Top of page
-S[edit]
-Sa–Sh[edit]
 Maher Sabry
 Bob Saget
 Abdulkadir Ahmed Said
@@ -1511,8 +1465,6 @@ Vincent Sherman
 Daryush Shokof
 Cate Shortland
 M. Night Shyamalan
-Top of page
-Si–Sz[edit]
 George Sidney
 Scott Sidney
 Don Siegel
@@ -1598,8 +1550,6 @@ Harry Sweet
 Hans-Jürgen Syberberg
 Khady Sylla
 István Szabó
-Top of page
-T[edit]
 Rachel Talalay
 Patrick Tam
 Lee Tamahori
@@ -1660,15 +1610,11 @@ Jon Turteltaub
 Frank Tuttle
 Tom Tykwer
 George Tzavellas
-Top of page
-U[edit]
 Edgar G. Ulmer
 Ron Underwood
 Upendra
 Kinka Usher
 Peter Ustinov
-Top of page
-V[edit]
 Roger Vadim
 Ladislao Vajda
 Luis Valdez
@@ -1709,8 +1655,6 @@ Bernard Vorhaus
 Slavko Vorkapić
 Kurt Voss
 Jurgen Vsych
-Top of page
-W[edit]
 The Wachowskis
 Michael Wadleigh
 Wai Ka-Fai
@@ -1802,11 +1746,7 @@ John Griffith Wray
 Edgar Wright
 Mack V. Wright
 William Wyler
-Top of page
-X[edit]
 Xie Jin
-Top of page
-Y[edit]
 Boaz Yakin
 Edward Yang
 Ruby Yang
@@ -1824,8 +1764,6 @@ Terence Young
 Yuen Woo-ping
 Brian Yuzna
 Yugander V.V.
-Top of page
-Z[edit]
 Eduard Zahariev
 Krzysztof Zanussi
 Franco Zeffirelli
