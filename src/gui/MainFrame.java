@@ -404,7 +404,7 @@ public class MainFrame extends javax.swing.JFrame {
   
   public void displayDirector(Director d) {
     directorName.setText(d.getName());
-    directorRating.setText(String.valueOf(d.getRating()));
+    directorRating.setText(String.valueOf(d.getOverall()));
     directorSalary.setText(String.valueOf(d.getSalary()));
     directorThumbnail.setIcon(new ImageIcon(GuiHelper.getThumbnail(d.getThumbnail())));
     directorButton.setText("Despedir");
@@ -428,7 +428,7 @@ public class MainFrame extends javax.swing.JFrame {
 
   public void displayScriptWriter(ScriptWriter w) {
     writerName.setText(w.getName());
-    writerRating.setText(String.valueOf(w.getRating()));
+    writerRating.setText(String.valueOf(w.getOverall()));
     writerSalary.setText(String.valueOf(w.getSalary()));
     writerThumbnail.setIcon(new ImageIcon(GuiHelper.getThumbnail(w.getThumbnail())));
     writerButton.setText("Despedir");
