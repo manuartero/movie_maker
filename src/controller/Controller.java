@@ -1,9 +1,9 @@
 package controller;
 
 import gameLogic.AvaiblePeople;
-import gameLogic.User;
+import gameLogic.Player;
 import gameLogic.staff.Director;
-import gameLogic.staff.Employee;
+import gameLogic.staff.interfaces.Employee;
 import gameLogic.staff.ScriptWriter;
 import gui.InfoPopUp;
 import gui.MainFrame;
@@ -22,11 +22,11 @@ import utils.GuiHelper;
 public class Controller {
   private final MainFrame gui;
   private final TimeSimulator timeSimulator;
-  private final User user;
+  private final Player user;
   private boolean currentlyShowingInfo;
 
   public Controller(MainFrame frame) {
-    user = User.getInstance();
+    user = Player.getInstance();
     currentlyShowingInfo = false;
     this.gui = frame;
     timeSimulator = new TimeSimulator(this);

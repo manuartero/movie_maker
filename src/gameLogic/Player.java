@@ -10,7 +10,7 @@ import java.util.Map;
  *
  * @author manutero
  */
-public class User {
+public class Player {
 
   private double money;
   private double totalExpenditure;
@@ -23,16 +23,16 @@ public class User {
    * <p>
    * @return instance
    */
-  public static User getInstance() {
+  public static Player getInstance() {
     if (instance == null) {
-      instance = new User();
+      instance = new Player();
     }
     return instance;
   }
 
-  private static User instance = null;
+  private static Player instance = null;
 
-  private User() {
+  private Player() {
     money = GameConstans.STARTING_MONEY;
     basicExpenditure = 1;
     totalExpenditure = basicExpenditure;
