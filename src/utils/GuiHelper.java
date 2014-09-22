@@ -25,6 +25,8 @@ public class GuiHelper {
   }
 
   /**
+   * If loading a project's image, call <em>getPortrait(String) : Image</em> instead.
+   * <p>
    * @param imagePath for example "resources/protraits/thumb-10.png"
    * @return Image instance
    */
@@ -39,7 +41,7 @@ public class GuiHelper {
   }
 
   /**
-   * @param imageName for example "thumb-10"
+   * @param imageName name of the image, for example "portrait-10"
    * @return
    */
   public static Image getPortrait(String imageName) {
@@ -47,8 +49,21 @@ public class GuiHelper {
     return createImage(imagePath);
   }
 
+  /**
+   * @param imageName name of the thumbnail, for example "thumb-10"
+   * @return
+   */
   public static Image getThumbnail(String imageName) {
     String imagePath = movieMaker.MovieMaker.THUMBNAILS_FOLDER + imageName + ".png";
+    return createImage(imagePath);
+  }
+
+  /**
+   * @param imageName name of the icon, for example "sort_name"
+   * @return
+   */
+  public static Image getIcon(String imageName) {
+    String imagePath = movieMaker.MovieMaker.ICONS_FOLDER + imageName + ".png";
     return createImage(imagePath);
   }
 

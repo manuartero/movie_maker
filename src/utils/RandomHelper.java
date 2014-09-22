@@ -60,6 +60,15 @@ public final class RandomHelper {
     return response;
   }
 
+  public static int randomRating() {
+    return randomInt(0, 99);
+  }
+
+  public static int gaussDistribution(int min, int max) {
+    //TODO
+    return RandomHelper.randomInt(min, max);
+  }
+
   /**
    * Helper class, no need to extend or instanciate it
    */
