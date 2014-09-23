@@ -17,14 +17,14 @@ import javax.swing.table.TableModel;
  *
  * @author manutero
  */
-public class InfoPopUp extends javax.swing.JFrame {
+public class UnusedTable extends javax.swing.JFrame {
 
 
   /**
    * Creates new form InfoPopUp
    * @param data
    */
-  public InfoPopUp(TableModel data) {
+  public UnusedTable(TableModel data) {
     this.data = data;
     initComponents();
   }
@@ -63,7 +63,6 @@ public class InfoPopUp extends javax.swing.JFrame {
     setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
     setTitle("Detalles");
     setFocusable(false);
-    setMaximumSize(new java.awt.Dimension(33, 33));
     setResizable(false);
     setType(java.awt.Window.Type.POPUP);
     getContentPane().setLayout(new java.awt.FlowLayout());
@@ -93,19 +92,20 @@ public class InfoPopUp extends javax.swing.JFrame {
         }
       }
     } catch (ClassNotFoundException ex) {
-      java.util.logging.Logger.getLogger(InfoPopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(UnusedTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (InstantiationException ex) {
-      java.util.logging.Logger.getLogger(InfoPopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(UnusedTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (IllegalAccessException ex) {
-      java.util.logging.Logger.getLogger(InfoPopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(UnusedTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-      java.util.logging.Logger.getLogger(InfoPopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(UnusedTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+        //</editor-fold>
         //</editor-fold>
 
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(() -> {
-      new InfoPopUp(new DefaultTableModel()).setVisible(true);
+      new UnusedTable(new DefaultTableModel()).setVisible(true);
     });
   }
 
