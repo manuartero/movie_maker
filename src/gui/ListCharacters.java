@@ -1,17 +1,21 @@
 package gui;
 
 import controller.Controller;
-import gameLogic.staff.Director;
 import gameLogic.staff.interfaces.Employee;
+import gameLogic.staff.interfaces.StaffMember;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import movieMaker.MovieMaker.Constants;
 
 /**
  *
  * @author manutero
  * @param <T>
  */
-public class PopUp<T extends Employee> extends javax.swing.JFrame {
+public class ListCharacters<T extends Employee> extends javax.swing.JFrame {
 
   private Controller controller;
   private DefaultListModel avaibleChoices;
@@ -22,17 +26,21 @@ public class PopUp<T extends Employee> extends javax.swing.JFrame {
    * Creates new form PopUp for hiring staff.
    * In order to make it versatile, it's possible to create a new popUp containing
    * directors, scriptWriters, etc. 
-   * <p>
-           * FIXME E instead of T
-           * <p>
-           * @param <T>
+   *
    * @param candidates
    */
-  public <E extends Employee> PopUp(final List<T> candidates) {
+  public ListCharacters(final List<T> candidates) {
     this.list = candidates;
     this.avaibleChoices = createListModel(candidates);
     initComponents();
     ascendingOrder = false;
+  }
+
+  private Point locateFrame() {
+    Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+    int x = (int) ((dimension.getWidth() - this.getWidth()) / 3);
+    int y = (int) ((dimension.getHeight() - this.getHeight()) / 3);
+    return new Point(x, y);
   }
 
   /**
@@ -46,23 +54,68 @@ public class PopUp<T extends Employee> extends javax.swing.JFrame {
   private void initComponents() {
     java.awt.GridBagConstraints gridBagConstraints;
 
-    jSplitPane2 = new javax.swing.JSplitPane();
-    jScrollPane1 = new javax.swing.JScrollPane();
-    selectionList = new javax.swing.JList();
-    jPanel1 = new javax.swing.JPanel();
+    final javax.swing.JToolBar toolbar = new javax.swing.JToolBar();
     sortNameButton = new javax.swing.JButton();
+    jSeparator1 = new javax.swing.JToolBar.Separator();
     sortRatingButton = new javax.swing.JButton();
-    selectionButton = new javax.swing.JButton();
+    jSeparator2 = new javax.swing.JToolBar.Separator();
+    jPanel1 = new javax.swing.JPanel();
+    final javax.swing.JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
+    selectionList = new javax.swing.JList();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     setTitle("Selección del Staff");
+    setBackground(new java.awt.Color(255, 255, 255));
     setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-    setType(java.awt.Window.Type.POPUP);
+    setLocation(locateFrame());
+    getContentPane().setLayout(new java.awt.GridBagLayout());
 
-    jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+    toolbar.setBackground(new java.awt.Color(255, 255, 255));
+    toolbar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+    toolbar.setFloatable(false);
 
+    sortNameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sort_name.png"))); // NOI18N
+    sortNameButton.setToolTipText("Ordernar por nombre");
+    sortNameButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+    sortNameButton.setFocusable(false);
+    sortNameButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    sortNameButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+    sortNameButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    sortNameButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        sortNameButtonActionPerformed(evt);
+      }
+    });
+    toolbar.add(sortNameButton);
+    toolbar.add(jSeparator1);
+
+    sortRatingButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sort_rating.png"))); // NOI18N
+    sortRatingButton.setToolTipText("Ordernar por valoración general");
+    sortRatingButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+    sortRatingButton.setFocusable(false);
+    sortRatingButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    sortRatingButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    sortRatingButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        sortRatingButtonActionPerformed(evt);
+      }
+    });
+    toolbar.add(sortRatingButton);
+    toolbar.add(jSeparator2);
+
+    getContentPane().add(toolbar, new java.awt.GridBagConstraints());
+
+    jPanel1.setLayout(new java.awt.GridBagLayout());
+
+    jScrollPane1.setMinimumSize(new java.awt.Dimension(275, 600));
+    jScrollPane1.setPreferredSize(new java.awt.Dimension(275, 600));
+
+    selectionList.setFont(Constants.FONT);
+    selectionList.setForeground(Constants.FONT_COLOR);
     selectionList.setModel(this.avaibleChoices);
     selectionList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+    selectionList.setSelectionBackground(new java.awt.Color(32, 162, 162));
+    selectionList.setSelectionForeground(new java.awt.Color(102, 102, 102));
     selectionList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
       public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
         valueChangedListener(evt);
@@ -70,52 +123,18 @@ public class PopUp<T extends Employee> extends javax.swing.JFrame {
     });
     jScrollPane1.setViewportView(selectionList);
 
-    jSplitPane2.setTopComponent(jScrollPane1);
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 0;
+    jPanel1.add(jScrollPane1, gridBagConstraints);
 
-    jPanel1.setLayout(new java.awt.GridBagLayout());
-
-    sortNameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sort_name.png"))); // NOI18N
-    sortNameButton.setToolTipText("Ordernar por nombre");
-    sortNameButton.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        sortNameButtonActionPerformed(evt);
-      }
-    });
-    jPanel1.add(sortNameButton, new java.awt.GridBagConstraints());
-
-    sortRatingButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sort_rating.png"))); // NOI18N
-    sortRatingButton.setToolTipText("Ordernar por valoración general");
-    sortRatingButton.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        sortRatingButtonActionPerformed(evt);
-      }
-    });
-    jPanel1.add(sortRatingButton, new java.awt.GridBagConstraints());
-
-    selectionButton.setText("Seleccionar");
-    selectionButton.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        selectionButtonActionPerformed(evt);
-      }
-    });
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 1;
-    gridBagConstraints.gridwidth = 2;
-    jPanel1.add(selectionButton, gridBagConstraints);
-
-    jSplitPane2.setBottomComponent(jPanel1);
-
-    getContentPane().add(jSplitPane2, java.awt.BorderLayout.CENTER);
+    getContentPane().add(jPanel1, gridBagConstraints);
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
-
-  private void selectionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectionButtonActionPerformed
-    Object selected = avaibleChoices.get(selectionList.getSelectedIndex());
-    controller.chosenStaff((T) selected);
-    this.dispose();
-  }//GEN-LAST:event_selectionButtonActionPerformed
 
   private void sortNameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortNameButtonActionPerformed
     if (ascendingOrder) {
@@ -144,7 +163,9 @@ public class PopUp<T extends Employee> extends javax.swing.JFrame {
   private void valueChangedListener(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_valueChangedListener
     if (!evt.getValueIsAdjusting()){
       Object selected = avaibleChoices.get(selectionList.getSelectedIndex());
-      DirectorInfo popUp = new DirectorInfo((Director) selected);
+      ShowCharacter popUp = new ShowCharacter((StaffMember) selected);
+      popUp.setController(this.controller);
+      popUp.setParent(this);
       popUp.setVisible(true);
     }
   }//GEN-LAST:event_valueChangedListener
@@ -152,9 +173,8 @@ public class PopUp<T extends Employee> extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JPanel jPanel1;
-  private javax.swing.JScrollPane jScrollPane1;
-  private javax.swing.JSplitPane jSplitPane2;
-  private javax.swing.JButton selectionButton;
+  private javax.swing.JToolBar.Separator jSeparator1;
+  private javax.swing.JToolBar.Separator jSeparator2;
   private javax.swing.JList selectionList;
   private javax.swing.JButton sortNameButton;
   private javax.swing.JButton sortRatingButton;
@@ -173,11 +193,6 @@ public class PopUp<T extends Employee> extends javax.swing.JFrame {
       response.add(i, element);
     }
     return response;
-  }
-
-  // FiXME: delete this
-  public void launch() {
-    setVisible(true);
   }
 
 }
