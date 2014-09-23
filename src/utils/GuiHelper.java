@@ -6,8 +6,10 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import movieMaker.MovieMaker.Constants;
 
 public class GuiHelper {
 
@@ -24,13 +26,31 @@ public class GuiHelper {
     return model;
   }
 
-  /**
-   * If loading a project's image, call <em>getPortrait(String) : Image</em> instead.
-   * <p>
-   * @param imagePath for example "resources/protraits/thumb-10.png"
-   * @return Image instance
-   */
-  public static Image createImage(String imagePath) {
+
+  // <editor-fold desc="ImageIcon">
+  //
+  public static ImageIcon getPortraitIcon(String imageName) {
+    String imagePath = Constants.PORTRAITS_FOLDER + imageName + ".png";
+    Image image = createImage(imagePath);
+    ImageIcon response = new ImageIcon(image);
+    return response;
+  }
+
+  public static ImageIcon getThumbnailIcon(String imageName) {
+    String imagePath = Constants.THUMBNAILS_FOLDER + imageName + ".png";
+    Image image = createImage(imagePath);
+    ImageIcon response = new ImageIcon(image);
+    return response;
+  }
+  
+  public static ImageIcon getIconIcon(String imageName) {
+    String imagePath = Constants.ICONS_FOLDER + imageName + ".png";
+    Image image = createImage(imagePath);
+    ImageIcon response = new ImageIcon(image);
+    return response;
+  }
+
+  private static Image createImage(String imagePath) {
     Image response = null;
     try {
       response = ImageIO.read(movieMaker.MovieMaker.class.getClassLoader().getResource(imagePath));
@@ -39,33 +59,8 @@ public class GuiHelper {
     }
     return response;
   }
-
-  /**
-   * @param imageName name of the image, for example "portrait-10"
-   * @return
-   */
-  public static Image getPortrait(String imageName) {
-    String imagePath = movieMaker.MovieMaker.PORTRAITS_FOLDER + imageName + ".png";
-    return createImage(imagePath);
-  }
-
-  /**
-   * @param imageName name of the thumbnail, for example "thumb-10"
-   * @return
-   */
-  public static Image getThumbnail(String imageName) {
-    String imagePath = movieMaker.MovieMaker.THUMBNAILS_FOLDER + imageName + ".png";
-    return createImage(imagePath);
-  }
-
-  /**
-   * @param imageName name of the icon, for example "sort_name"
-   * @return
-   */
-  public static Image getIcon(String imageName) {
-    String imagePath = movieMaker.MovieMaker.ICONS_FOLDER + imageName + ".png";
-    return createImage(imagePath);
-  }
+  //
+  // </editor-fold>
 
   /**
    * No need to extend or instanciate this class
